@@ -15,7 +15,7 @@ if [ $(id -u) -eq 0 ]; then
   pip config set global.timeout 6000
   pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
   pip config set global.trusted-host pypi.tuna.tsinghua.edu.cn
-  pip install --upgrade pip
+  pip install -U pip
 
   # for Desktop
   apt install -y simplescreenrecorder

@@ -19,6 +19,10 @@ class UserCfg(dict):
     def __init__(self, file):
         with open(file, "r") as f:
             super().__init__(json.load(f))
+        # Check if all keys are registered
+        for k, v in self.items():
+            assert k in self.registered, f"Invalid key {k}."
+            assert v, f'Empty value for "{k}".'
 
     def generate(self):
         # git

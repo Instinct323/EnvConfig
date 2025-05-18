@@ -43,7 +43,7 @@ RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 1 && \
     pip config set global.timeout 6000 && \
     pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple && \
     pip config set global.trusted-host pypi.tuna.tsinghua.edu.cn && \
-    pip install --upgrade pip
+    pip install -U pip
 
 # ROS
 COPY ../assets/ros.key /usr/share/keyrings/ros-archive-keyring.gpg
