@@ -44,6 +44,8 @@ Configuration:
       "https://dockerpull.com"
     ]
 
+  Excel2LaTeX: https://www.ctan.org/tex-archive/support/excel2latex
+
   JetBrains-plugins:
     # Memory-Settings
     # Registry: run.processes.with.pty = False
