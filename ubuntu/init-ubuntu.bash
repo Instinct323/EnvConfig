@@ -18,7 +18,7 @@ if [ $(id -u) -eq 0 ]; then
   pip install -U pip
 
   # for Desktop
-  apt install -y simplescreenrecorder
+  apt install -y flameshot simplescreenrecorder
   
   # bashrc
   cp home/* ~/

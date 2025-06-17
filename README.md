@@ -16,21 +16,24 @@ ubuntu/clone-bin.bash
 ```
 
 - /etc/fstab
-    - RUN: ntfsfix /dev/*
-    - ADD: /dev/disk/by-uuid/* /media/user/* ntfs defaults 0 2
+  - RUN: ntfsfix /dev/*
+  - ADD: /dev/disk/by-uuid/* /media/user/* ntfs defaults 0 2
 
 - ~/.bashrc
-    - ADD: export LANG=en_US
-    - ADD: export LANGUAGE=en_US
-    - ADD: export PATH=$PATH:~/.local/bin
+  - ADD: export LANG=en_US
+  - ADD: export LANGUAGE=en_US
+  - ADD: export PATH=$PATH:~/.local/bin
 
 - /etc/default/grub
-    - MOD: GRUB_DEFAULT=2
-    - RUN: update-grub
+  - MOD: GRUB_DEFAULT=2
+  - RUN: update-grub
 
 - /etc/ppp/options
-    - DEL: lcp-echo-interval
-    - DEL: lcp-echo-failure
+  - DEL: lcp-echo-interval
+  - DEL: lcp-echo-failure
+
+- /etc/apt/sources.list
+  - [https://developer.aliyun.com/mirror/ubuntu](https://developer.aliyun.com/mirror/ubuntu)
 
 # Windows
 
