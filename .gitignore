@@ -15,7 +15,9 @@ desktop.ini
 
 # datasets and projects
 .DS_Store
-*test*
+cmake-build*
+!ubuntu/cmake-build.bash
+build
 data
 log
 runs

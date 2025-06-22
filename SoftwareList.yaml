@@ -63,3 +63,10 @@ Configuration:
     better-bibtex: https://github.com/retorquere/zotero-better-bibtex
     format-metadata: https://github.com/northword/zotero-format-metadata
     pdf-translate: https://github.com/windingwind/zotero-pdf-translate
+
+
+Nice-fonts:
+  - Candara
+  - Dubai
+  - Footlight MT Light
+  - Times New Roman

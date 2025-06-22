@@ -35,6 +35,12 @@ ubuntu/clone-bin.bash
 - /etc/apt/sources.list
   - [https://developer.aliyun.com/mirror/ubuntu](https://developer.aliyun.com/mirror/ubuntu)
 
+- ln -s {src} {dst}
+  - ~/.cache
+  - ~/Downloads
+  - ~/miniconda3
+  - ~/Zotero
+
 # Windows
 
 - MOD env: Download, Documents, tmp
