@@ -22,7 +22,6 @@ ubuntu/clone-bin.bash
 - ~/.bashrc
   - ADD: export LANG=en_US
   - ADD: export LANGUAGE=en_US
-  - ADD: export PATH=$PATH:~/.local/bin
 
 - /etc/default/grub
   - MOD: GRUB_DEFAULT=2
