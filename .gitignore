@@ -18,7 +18,6 @@ desktop.ini
 cmake-build*
 !ubuntu/cmake-build.bash
 build
-data
 log
 runs
 install
