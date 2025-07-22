@@ -32,6 +32,7 @@ class UserCfg(dict):
         # ssh
         file = Path.home() / ".ssh/id_rsa"
         execute(f"ssh-keygen -t rsa -C {self['email']} -N {self['passwd']} -f {file}")
+        # ssh-copy-id <user>@<host>
 
 
 if __name__ == '__main__':
