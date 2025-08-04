@@ -20,9 +20,6 @@ if [ $(id -u) -eq 0 ]; then
   # for Desktop
   apt install -y flameshot simplescreenrecorder
   
-  # bashrc
-  cp home/* ~/
-
 else
   echo "error: permission denied."
 fi
