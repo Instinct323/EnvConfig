@@ -31,6 +31,9 @@ ubuntu/clone-bin.bash
   - DEL: lcp-echo-interval
   - DEL: lcp-echo-failure
 
+- /etc/NetworkManager/conf.d/default-wifi-powersave-on.conf
+  - MOD: wifi.powersave = 0
+
 - /etc/apt/sources.list
   - [https://developer.aliyun.com/mirror/ubuntu](https://developer.aliyun.com/mirror/ubuntu)
 
