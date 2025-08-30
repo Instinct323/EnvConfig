@@ -15,27 +15,29 @@ ubuntu/clone-bin.bash
 # TODO: Copy fonts
 ```
 
-- /etc/fstab
-  - RUN: ntfsfix /dev/*
-  - ADD: /dev/disk/by-uuid/* /media/user/* ntfs defaults 0 2
-
 - ~/.bashrc
   - ADD: export LANG=en_US
   - ADD: export LANGUAGE=en_US
+
+- /etc/apt/sources.list
+  - [https://developer.aliyun.com/mirror/ubuntu](https://developer.aliyun.com/mirror/ubuntu)
 
 - /etc/default/grub
   - MOD: GRUB_DEFAULT=2
   - RUN: update-grub
 
+- /etc/fstab
+  - RUN: ntfsfix /dev/*
+  - ADD: /dev/disk/by-uuid/* /media/user/* ntfs defaults 0 2
+
 - /etc/ppp/options
   - DEL: lcp-echo-interval
   - DEL: lcp-echo-failure
 
-- /etc/NetworkManager/conf.d/default-wifi-powersave-on.conf
-  - MOD: wifi.powersave = 0
-
-- /etc/apt/sources.list
-  - [https://developer.aliyun.com/mirror/ubuntu](https://developer.aliyun.com/mirror/ubuntu)
+- /etc/ssh/sshd_config
+  - PasswordAuthentication yes
+  - PermitEmptyPasswords no
+  - sudo service ssh start
 
 - ln -s {src} {dst}
   - ~/.cache
