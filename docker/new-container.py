@@ -11,6 +11,21 @@ def execute(cmd, check=True):
     if check and ret: raise OSError(f"Fail to execute")
 
 
+def parse_seq(value: str) -> list[int]:
+    """
+    Parse a sequence string like "1-3,5,7-8" to a list of integers [1,2,3,5,7,8]
+    """
+    value = str(value).replace(" ", "").split(",")
+    ret = []
+    for p in filter(None, value):
+        if "-" in p:
+            s, e = map(int, p.split("-"))
+            ret.extend(range(s, e + 1))
+        else:
+            ret.append(int(p))
+    return ret
+
+
 class DockerCmd(dict):
     registered = {"file", "image", "name", "port", "volume", "env", "workdir", "options"}
 
@@ -28,14 +43,7 @@ class DockerCmd(dict):
         # name
         self.setdefault("name", cfg.stem)
         # port
-        port = str(self.get("port", "")).replace(" ", "").split(",")
-        self["port"] = []
-        for p in filter(None, port):
-            if "-" in p:
-                s, e = map(int, p.split("-"))
-                self["port"].extend(range(s, e + 1))
-            else:
-                self["port"].append(int(p))
+        self["port"] = parse_seq(self.get("port", ""))
         # volume
         self["volume"] = [f"{k}:{v}" for k, v in self.get("volume", {}).items()]
         self["volume"].sort()
