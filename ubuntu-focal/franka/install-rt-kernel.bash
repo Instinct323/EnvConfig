@@ -36,6 +36,10 @@ if [ $(id -u) -eq 0 ]; then
   make -j$(nproc) deb-pkg
   IGNORE_PREEMPT_RT_PRESENCE=1 dpkg -i ../linux-headers-*.deb ../linux-image-*.deb
 
+  # addgroup realtime
+  # usermod -a -G realtime $(whoami)
+  # gedit /etc/security/limits.conf
+
 else
   echo "error: permission denied."
 fi

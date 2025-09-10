@@ -8,3 +8,4 @@ cat /tmp/ros.asc | apt-key add -
 apt update
 apt upgrade -y
 apt install -y ros-noetic-desktop-full
+apt install python3-rosdep ros-noetic-ros-numpy

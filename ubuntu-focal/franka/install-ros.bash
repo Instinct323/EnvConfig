@@ -1,12 +1,18 @@
 #!/bin/bash
+# ./install-ros.bash ~/catkin_ws
 
-# https://www.franka.cn/FCI/installation_linux.html#building-from-source
-mkdir -p $1/src && cd $1
+if [ $(id -u) -eq 0 ]; then
 
-git clone --recursive https://github.com/frankaemika/franka_ros src/franka_ros
-cd src/franka_ros
-git checkout noetic-devel
-cd ../..
+  # https://www.franka.cn/FCI/installation_linux.html#building-from-source
+  cd $1
+  git clone -b $ROS_DISTRO-devel --recursive https://github.com/frankaemika/franka_ros src/franka_ros
 
-rosdep install --from-paths src --ignore-src --rosdistro noetic -y --skip-keys libfranka
-catkin_make -DCMAKE_BUILD_TYPE=Release -DFranka_DIR:PATH=/opt/libfranka
+  apt install ros-noetic-boost-sml ros-noetic-combined-robot-hw ros-noetic-joint-trajectory-controller
+  apt install ros-noetic-moveit ros-noetic-panda-moveit-config
+
+  rosdep install --from-paths src --ignore-src --rosdistro $ROS_DISTRO -y --skip-keys libfranka
+  catkin_make -DCMAKE_BUILD_TYPE=Release -DFranka_DIR:PATH=/opt/libfranka
+
+else
+  echo "error: permission denied."
+fi

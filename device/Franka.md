@@ -7,6 +7,20 @@ IPv4:
 
 fci-ip: 172.16.0.2
 
+# Requirements
+
+通过以下命令查看 Ethernet 设备:
+
+```bash
+sudo lshw -class network
+```
+
+连接 Franka 线缆后，网卡协商速率需达到 1Gbps, 可通过以下命令检查网卡速率 (使用 `ip a` 查看网卡名称):
+
+```bash
+ethtool enp7s0
+```
+
 # launch
 
 [DOC](https://www.franka.cn/FCI/franka_ros.html)
