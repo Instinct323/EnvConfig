@@ -10,4 +10,5 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-a
 # Python 3.8 Libraries: /opt/ros/foxy/lib/python3.8/site-packages
 apt update
 apt upgrade -y
-apt install -y ros-foxy-desktop python3-argcomplete
+apt install -y ros-foxy-desktop
+apt install -y python3-argcomplete ros-foxy-ros1-bridge

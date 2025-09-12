@@ -1,4 +1,4 @@
-# Lab's Panda
+# Ethernet
 
 IPv4:
 - 方式: 手动

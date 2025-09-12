@@ -1,11 +1,12 @@
-if [ $(id -u) -eq 0 ]; then
+#!/bin/bash
 
-  apt install -y clamav clamav-daemon
-  /etc/init.d/clamav-freshclam stop
-  freshclam
-  /etc/init.d/clamav-freshclam start
-  # clamscan -r /
-
-else
+if ! [ $(id -u) -eq 0 ]; then
   echo "error: permission denied."
+  exit 1
 fi
+
+apt install -y clamav clamav-daemon
+/etc/init.d/clamav-freshclam stop
+freshclam
+/etc/init.d/clamav-freshclam start
+# clamscan -r /
