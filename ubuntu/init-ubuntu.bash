@@ -10,7 +10,7 @@ apt update
 apt upgrade -y
 
 # utils
-apt install -y curl git sudo tree unzip wget
+apt install -y curl git git-lfs sudo tree unzip wget
 apt install -y libnghttp2-dev libssl-dev nghttp2
 apt install -y build-essential cmake gdb
 
