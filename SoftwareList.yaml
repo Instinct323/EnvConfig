@@ -16,7 +16,9 @@ Programming:
   CUDA Toolkit: https://developer.nvidia.com/cuda-toolkit-archive
   Docker: https://www.docker.com/
   Git: https://git-scm.com/
+  MikTeX: https://miktex.org/
   MiniConda: https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/?C=M&O=D
+  Strawberry Perl: https://strawberryperl.com/
   Visual Studio: https://visualstudio.microsoft.com/zh-hans/
 
 Other-tools:
@@ -50,7 +52,10 @@ Configuration:
     # Memory-Settings
     # Registry: run.processes.with.pty = False
     - GitHub Copilot
+    - GLB Viewer
     - Markdown Editor
+    - PDF Viewer
+    - TeXiFy-IDEA: https://hannah-sten.github.io/TeXiFy-IDEA/installation-guide.html
     - Translation
 
   # VcXsrv/X0.hosts: Host IP address list
