@@ -109,7 +109,9 @@ async function mergeMetadata(item, newItem, cover = true) {
     for (let field of etype) {
         msg += field + ": " + newItem.getField(field) + "\n";
     }
-    item.setField("extra", newItem.getField("extra") + "\n" + msg);
+    try {
+        item.setField("extra", newItem.getField("extra") + "\n" + msg);
+    } catch (e) {}
     return etype.length;
 }
 
@@ -143,13 +145,18 @@ class MetadataUpdater {
         }
         this.info();
         for (let item of ITEMS) {
-            // 英文标题, 处理
-            if (!item.getField("title").match(cn_char)) {
-                await this.process(item);
-            } else {
-                // 中文标题, 忽略
-                item.addTag(this.tags[4]);
-                this.cnt[4]++;
+            try {
+                // 英文标题, 处理
+                if (!item.getField("title").match(cn_char)) {
+                    await this.process(item);
+                } else {
+                    // 中文标题, 忽略
+                    item.addTag(this.tags[4]);
+                    this.cnt[4]++;
+                }
+            } catch (e) {
+                item.addTag(this.tags[3]);
+                this.cnt[3]++;
             }
             item.removeTag(this.tags[0]);
             this.cnt[0]--;

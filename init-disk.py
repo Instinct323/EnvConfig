@@ -5,11 +5,10 @@ USER = "Instinct323"
 URL_BASE = f"https://github.com/{USER}" if os.name == "nt" else f"git@github.com:{USER}"
 
 DIR_TREE = {
-    "Downloads": {},
+    ".empty": ["Downloads", "Source"],
 
     "Softwin": {
-        ".empty": ["tmp", "Tool",
-                   "Adobe", "Programming", "Tencent"],
+        ".empty": ["tmp", "AppData", "Tool", "Adobe", "Programming", "Tencent"],
     },
 
     "Information": {
