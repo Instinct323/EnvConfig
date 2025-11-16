@@ -17,7 +17,9 @@ Programming:
   Docker: https://www.docker.com/
   Git: https://git-scm.com/
   MikTeX: https://miktex.org/
-  MiniConda: https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/?C=M&O=D
+  MiniConda:
+  - https://www.anaconda.com/docs/getting-started/miniconda/install
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/?C=M&O=D
   Strawberry Perl: https://strawberryperl.com/
   Visual Studio: https://visualstudio.microsoft.com/zh-hans/
 
