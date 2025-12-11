@@ -1,5 +1,12 @@
 {
   "config": {
+    "options": {
+      "exportNotes": false,
+      "exportFileData": false,
+      "useJournalAbbreviation": false,
+      "includeAnnotations": false,
+      "cache": true
+    },
     "preferences": {
       "ascii": "",
       "asciiBibLaTeX": false,
@@ -18,12 +25,12 @@
       "biblatexExtendedDateFormat": true,
       "biblatexExtendedNameFormat": true,
       "biblatexExtractEprint": true,
+      "biblatexUsePrefix": true,
       "bibtexEditionOrdinal": false,
       "bibtexParticleNoOp": false,
       "bibtexURL": "off",
       "cache": true,
       "cacheDelete": false,
-      "cacheRetain": false,
       "charmap": "",
       "chinese": false,
       "chineseSplitName": true,
@@ -53,6 +60,7 @@
       "importJabRefAbbreviations": true,
       "importJabRefStrings": true,
       "importNoteToExtra": "",
+      "importPlaceEvent": "inproceedings,conference,presentation,talk",
       "importSentenceCase": "on+guess",
       "importSentenceCaseQuoted": true,
       "importUnknownTexCommand": "ignore",

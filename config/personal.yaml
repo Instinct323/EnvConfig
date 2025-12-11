@@ -1,0 +1,12 @@
+speech_rate: 240    # characters per minute
+
+body:
+  cloth_len: 68     # cm
+  pants_len: 100    # cm
+  shoe_size: 40     # EU size
+
+update_date:
+  zotero: 2025-11-03
+  wechat:
+    _backup: 2025-10-15
+    _clean: 2025-09     # wxid_yysjo0g4xjjn22_a74f\msg
