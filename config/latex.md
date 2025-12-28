@@ -1,6 +1,7 @@
 Cell Color
 
 ```latex
+% usage: \cellcolor{topone}
 \usepackage[table]{xcolor}
 \definecolor{topone}{rgb}{0.99607843, 0.85098039, 0.38039216}
 \definecolor{toptwo}{rgb}{0.6745098,  0.84313725, 0.55686275}
