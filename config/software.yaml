@@ -15,7 +15,7 @@ Tencent:
 
 Programming:
   CLion: https://www.jetbrains.com.cn/clion/
-  CUDA Toolkit: https://developer.nvidia.com/cuda-toolkit-archive
+  CUDA Toolkit: https://developer.nvidia.com/cuda-toolkit-archive   # --silent --toolkit --override --toolkitpath=<*/cuda-12.8>
   Docker: https://www.docker.com/
   Git: https://git-scm.com/
   MikTeX: https://miktex.org/
