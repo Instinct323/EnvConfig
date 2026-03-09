@@ -14,7 +14,6 @@ Tencent:
   WeMeet: https://meeting.tencent.com/
 
 Programming:
-  CLion: https://www.jetbrains.com.cn/clion/
   CUDA Toolkit: https://developer.nvidia.com/cuda-toolkit-archive   # --silent --toolkit --override --toolkitpath=<*/cuda-12.8>
   Docker: https://www.docker.com/
   Git: https://git-scm.com/
@@ -34,10 +33,8 @@ Photo:
 Other-tools:
   # Clash: https://github.com/XiaMooo/Clash-for-Windows-zh-Linux-Arch
   EV Capture: https://www.ieway.cn/
-  FormatFactory: http://www.pcfreetime.com/formatfactory/CN/index.html
   Hiddify: https://github.com/hiddify/hiddify-app
   TickTick: https://www.dida365.com/
-  TranslucentTB: https://github.com/TranslucentTB/TranslucentTB/
   vivo Office: https://pc.vivo.com/#/
 
 
