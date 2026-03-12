@@ -35,5 +35,5 @@
 ### Environment
 
 1. 查找本地 conda 环境
-2. 如无 conda，则安装 [Miniconda](https://www.anaconda.com/docs/getting-started/miniconda/install)
-3. 引导用户选择现有虚拟环境或创建新环境（需指定：环境名称、Python 版本）
+2. 如无 conda：询问是否安装 [Miniconda](https://www.anaconda.com/docs/getting-started/miniconda/install)
+3. 询问用户 选择现有虚拟环境 / 创建新环境（需指定：环境名称、Python 版本）
