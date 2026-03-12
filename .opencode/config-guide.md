@@ -6,8 +6,9 @@
 
 - This-doc: 标题使用英文，正文使用中文
 - Config：
-  - 已完成的配置项（避免重复配置）
-  - 配置步骤（便于向用户说明操作过程）
+  - 已完成的配置项 (避免重复配置)
+  - 配置步骤 (便于向用户说明操作过程)
+  - 不同层级的配置文件之间的内容不应该出现重叠
 - File: 超链接表示的文件，一般位于该文档的根目录下；或者位于 [github](https://github.com/Instinct323/EnvConfig/blob/master/.opencode/) 仓库中
 
 ### Process
@@ -47,13 +48,13 @@ Config: `~/.config/opencode/global-config.md`
 
 Config: `AGENTS.md`
 
-### Include
-
-你需要读取并总结以下文档:
-
-- [code-style.md]()
-
 ### Preference
 
 - 始终使用中文回复，可穿插少量英文术语
 - 不要修改工作区之外的文件，请先在工作区内创建修改后的版本，并询问用户是否需要覆盖到源文件
+
+### Include
+
+你需要加载并阅读以下文件，提炼其要点添加到配置文件中:
+
+- [code-style.md](): 代码风格
