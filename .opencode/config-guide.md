@@ -1,12 +1,27 @@
 # Configuration Guide
 
-此文档的标题使用英文，正文使用中文。
+本文档记录 OpenCode 的配置规范与操作流程
+
+### Format
+
+- This-doc: 标题使用英文，正文使用中文
+- Config：
+  - 已完成的配置项（避免重复配置）
+  - 配置步骤（便于向用户说明操作过程）
+
+### Process
+
+1. 读取 Config：根据配置状态决定后续操作
+2. 状态判断：
+   - 已完成 → 询问用户是否需要重新配置
+   - 未完成 → 执行配置，完成后更新配置状态
+3. 清理：配置完成后清理临时文件
 
 ---
 
 ## Global
 
-在 opencode 全局配置路径 (`~/.config/opencode/`) 下创建 `global-config.md`，用于记录已完成的配置项以避免重复配置。当遇到已完成的配置项时，询问用户是否需要重新配置。配置完成后，清理过程中产生的临时文件。
+Config: `~/.config/opencode/global-config.md`
 
 ### oh-my-openagent
 
@@ -15,14 +30,14 @@
 
 ### anthropics-skills
 
-安装仓库中的 skills：
+安装社区维护的 skills：
 - 仓库：https://github.com/anthropics/skills
 
 ---
 
 ## Project
 
-将配置结果写入 `AGENTS.md`
+Config: `AGENTS.md`
 
 ### Include
 
@@ -30,10 +45,12 @@
 
 ### Preference
 
-- 始终使用中文回复，可使用少量英文单词
+- 始终使用中文回复，可穿插少量英文术语
 
 ### Environment
 
 1. 查找本地 conda 环境
 2. 如无 conda：询问是否安装 [Miniconda](https://www.anaconda.com/docs/getting-started/miniconda/install)
-3. 询问用户 选择现有虚拟环境 / 创建新环境（需指定：环境名称、Python 版本）
+3. 询问用户选择：
+   - 使用现有虚拟环境
+   - 创建新环境（需指定：环境名称、Python 版本）
