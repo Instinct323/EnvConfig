@@ -41,16 +41,10 @@ Config: `AGENTS.md`
 
 ### Include
 
+你需要读取并理解以下文档:
+
 - [code-style.md](https://github.com/Instinct323/EnvConfig/blob/master/.opencode/code-style.md)
 
 ### Preference
 
 - 始终使用中文回复，可穿插少量英文术语
-
-### Environment
-
-1. 查找本地 conda 环境
-2. 如无 conda：询问是否安装 [Miniconda](https://www.anaconda.com/docs/getting-started/miniconda/install)
-3. 询问用户选择：
-   - 使用现有虚拟环境
-   - 创建新环境（需指定：环境名称、Python 版本）
