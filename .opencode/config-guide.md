@@ -1,6 +1,10 @@
 # Configuration Guide
 
-本文档记录 OpenCode 的配置规范与操作流程
+如果你不是从本地文件中读取该文档，请先把该仓库 clone 到本地 (配置结束后删除)，以使用其中 `.opencode/` 目录下的文件:
+
+```bash
+git clone https://github.com/Instinct323/EnvConfig.git
+```
 
 ### Format
 
@@ -9,7 +13,7 @@
   - 已完成的配置项 (避免重复配置)
   - 配置步骤 (便于向用户说明操作过程)
   - 不同层级的配置文件之间的内容不应该出现重叠
-- File: 超链接表示的文件，一般位于该文档的根目录下；或者位于 [github](https://github.com/Instinct323/EnvConfig/blob/master/.opencode/) 仓库中
+- File: 超链接表示的文件，一般位于该文档的根目录下；或者位于仓库中
 
 ### Process
 
@@ -20,6 +24,8 @@
    - 已完成 → 询问用户是否需要重新配置
    - 未完成 → 执行配置，完成后更新配置状态
 3. 清理：配置完成后清理临时文件
+
+你需要先确定每个配置项之间的依赖关系，以并行地、更快地配置
 
 ---
 

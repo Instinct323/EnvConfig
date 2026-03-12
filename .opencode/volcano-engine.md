@@ -162,6 +162,8 @@ File: `~/.config/opencode/opencode.json`
 
 File: `~/.config/opencode/oh-my-opencode.json`
 
+Doc: https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/refs/heads/dev/docs/guide/agent-model-matching.md
+
 core-agent: sisyphus, hephaestus, prometheus, atlas
 
 阅读该配置文件中的任务列表，并根据任务的性质分别配置不同的模型 (如果缺失了核心 agent，你需要自行添加)
