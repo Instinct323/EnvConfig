@@ -1,8 +1,12 @@
-# Step 1
+Config: `~/.config/opencode/opencode.json`
 
-File: `~/.config/opencode/opencode.json`
+首先检测是否已经有配置好的 volcengine-plan API_KEY，然后给用户以下几个选项:
 
-在该文件中更新以下内容，同时替换`<ARK_API_KEY>`为用户输入的 API Key
+1. 写入新的 API_KEY
+2. 跳过配置 API_KEY
+3. 退出火山引擎配置
+
+在该文件中更新以下内容，同时替换`<ARK_API_KEY>`为用户输入的 API_KEY
 
 ```json
 {
@@ -156,25 +160,4 @@ File: `~/.config/opencode/opencode.json`
 }
 ```
 
-总结该配置文件中的可用模型列表，调查每个模型所擅长 / 不擅长的任务，以供下一步使用
-
-# Step 2
-
-File: `~/.config/opencode/oh-my-opencode.json`
-
-Doc: https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/refs/heads/dev/docs/guide/agent-model-matching.md
-
-core-agent: sisyphus, hephaestus, prometheus, atlas
-
-阅读该配置文件中的任务列表，并根据任务的性质分别配置不同的模型 (如果缺失了核心 agent，你需要自行添加)
-
-每一个 agent / category 都需要严格配置以下字段，以增强可读性：
-
-```json
-{
-    "model": "volcengine-plan/deepseek-v3.2",
-    "description": "执行官：利用长上下文进行循环纠错"
-}
-```
-
-最后，提醒用户重启 opencode，确保配置文件被正确加载
+记录该配置文件中的可用模型列表，以进行模型分配

@@ -45,8 +45,9 @@ Config: `~/.config/opencode/global-config.md`
 
 ### volcano-engine
 
-要求用户输入火山引擎的 `API-KEY`，有的话，参考以下文档进行配置：
+参考以下文档配置：
 - 文档：[volcano-engine.md]()
+- 模型：[model-config.md]()
 
 ---
 
