@@ -37,9 +37,9 @@ class UserCfg(dict):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument("json", type=str, help="Docker container configuration file")
+    parser.add_argument("json", type=str)
     args = parser.parse_args()
 
-    # python3 bin\new-user.py user-tongzj.json
+    # python new-user.py user-tongzj.json
     ucfg = UserCfg(args.json)
     ucfg.generate()
