@@ -222,11 +222,3 @@ class Class1:
 4. **Deep nesting** - If >3 levels, extract to function
 5. **Magic numbers** - Use named constants
 6. **Long parameter lists** - Use dataclass or configuration object
-
----
-
-## Reference Files
-
-- `/media/tongzj/Data/Workbench/ModelsAPI/api/utils/o3d_extension.py` - Open3D utilities
-- `/media/tongzj/Data/Workbench/ModelsAPI/api/utils/pose_tf.py` - Pose transformations
-- `/media/tongzj/Data/Workbench/ModelsAPI/api/utils/grasp_pose.py` - Grasp definitions
