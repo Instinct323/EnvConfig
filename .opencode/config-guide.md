@@ -26,7 +26,7 @@
 
 ### Include
 
-当前路径下：`code-style.md`
+- [code-style.md](https://github.com/Instinct323/EnvConfig/blob/master/.opencode/code-style.md)
 
 ### Preference
 
