@@ -28,7 +28,7 @@ Config: `~/.config/opencode/global-config.md`
 
 ### anthropics-skills
 
-安装社区维护的 skills：
+将以下仓库的 `skills` 目录下的技能添加到 `~/.config/opencode/skills/` 中：
 - 仓库：https://github.com/anthropics/skills
 
 ### oh-my-openagent
