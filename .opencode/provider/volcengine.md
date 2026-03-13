@@ -1,12 +1,10 @@
 Config: `~/.config/opencode/opencode.json`
 
-首先检测是否已经有配置好的 volcengine-plan API_KEY，然后给用户以下几个选项:
+Doc: https://www.volcengine.com/docs/82379/2188958?lang=zh
 
-1. 写入新的 API_KEY
-2. 跳过配置 API_KEY
-3. 退出火山引擎配置
+---
 
-在该文件中更新以下内容，同时替换`<ARK_API_KEY>`为用户输入的 API_KEY
+在 Config 中更新以下内容，同时替换`<ARK_API_KEY>`为用户输入的 API_KEY
 
 ```json
 {
@@ -159,5 +157,3 @@ Config: `~/.config/opencode/opencode.json`
   }
 }
 ```
-
-记录该配置文件中的可用模型列表，以进行模型分配

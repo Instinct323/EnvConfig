@@ -1,31 +1,36 @@
-Config: `~/.config/opencode/oh-my-opencode.json`
+[ARC Prize](https://arcprize.org/leaderboard): Gemini > GPT > Claude > Kimi > Minimax > GLM-5 > Deepseek > Qwen
 
-Doc: https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/refs/heads/dev/docs/guide/agent-model-matching.md
+[Chatbot](https://openlm.ai/chatbot-arena/): 
 
-core-agent: sisyphus, hephaestus, prometheus, atlas
+- Vision: Gemini > GPT = Doubao > Kimi
+
+[LLM Benchmark](https://livebench.ai/#/) (Qwen 效果不佳):
+
+- Reasoning: Claude = GPT > Gemini > Deepseek > Kimi
+- Coding: GPT > Claude > Gemini > Doubao > Kimi > Deepseek
+- Agentic Coding: GPT > Gemini > Claude > GLM-5 > Minimax > Kimi
+- Language: Gemini > Claude > GPT > Kimi = GLM-5
+- Instruction Following: Gemini > GPT > Claude > Kimi
+
+Doc: https://github.com/code-yeongyu/oh-my-openagent/blob/dev/docs/guide/agent-model-matching.md
 
 ---
 
-你需要阅读 Doc 中对各个任务的介绍，理解各个模型所需的能力
+从以下途径搜集模型列表：
 
-阅读该配置文件中的任务列表，根据这些任务所需的能力，对可用模型列表进行排序
+- 配置文件 `~/.config/opencode/opencode.json`
 
-随后，询问用户对模型配置的偏好：
+询问用户对模型配置的偏好：
 
 1. 性能优先：适合按调用次数计费的套餐
 2. 平衡性：既考虑性能，也考虑成本
 3. 成本优先：适合按 token 数计费的套餐
 4. 自定义：
 
-根据排序结果以及用户偏好，分别为每个任务分配模型 (如果缺失了核心 agent，你需要自行添加)
+以及用户所偏好的供应商 (每个选项对应一个供应商)
 
-每一个 agent / category 都需要严格配置以下字段，以增强可读性：
+---
 
-```json
-{
-    "model": "volcengine-plan/deepseek-v3.2",
-    "description": "执行官：利用长上下文进行循环纠错"
-}
-```
+按照 Doc 的教程，修改 `~/.config/opencode/oh-my-opencode.json`
 
 最后，提醒用户重启 opencode，确保配置文件被正确加载
