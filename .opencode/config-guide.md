@@ -33,6 +33,28 @@ git clone https://github.com/Instinct323/EnvConfig.git
 
 Config: `~/.config/opencode/global-config.md`
 
+将以下内容更新到 `~/.config/opencode/opencode.json`：
+
+```json
+{
+    "plugin": [
+        "@tarquinen/opencode-dcp@latest", 
+        "cc-safety-net"
+    ],
+    "compaction": {
+        "auto": true,
+        "prune": true,
+        "reserved": 10000
+    },
+    "lsp": {
+        "python": {
+            "command": ["pyright-langserver", "--stdio"],
+            "extensions": [".py", ".pyi"]
+        }
+    }
+}
+```
+
 ### anthropics-skills
 
 将以下仓库的 `skills` 目录下的技能添加到 `~/.config/opencode/skills/` 中：
