@@ -16,9 +16,13 @@ Doc: https://github.com/code-yeongyu/oh-my-openagent/blob/dev/docs/guide/agent-m
 
 ---
 
+# Step 1
+
 从以下途径搜集模型列表：
 
 - 配置文件 `~/.config/opencode/opencode.json`
+
+# Step 2
 
 询问用户对模型配置的偏好：
 
@@ -29,8 +33,10 @@ Doc: https://github.com/code-yeongyu/oh-my-openagent/blob/dev/docs/guide/agent-m
 
 以及用户所偏好的供应商 (每个选项对应一个供应商)
 
----
+# Step 3
 
-按照 Doc 的教程，修改 `~/.config/opencode/oh-my-opencode.json`
+按照 Doc 的教程，以及上述的排行榜，修改 `~/.config/opencode/oh-my-opencode.json`
+
+# Finish
 
 最后，提醒用户重启 opencode，确保配置文件被正确加载
