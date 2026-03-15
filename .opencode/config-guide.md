@@ -1,5 +1,7 @@
 # Configuration Guide
 
+这个教程的每一步都极其重要，请一字不漏地阅读并记录每个步骤的完成情况
+
 如果你不是从本地文件中读取该文档，请先把该仓库 clone 到本地 (配置结束后删除)，以使用其中 `.opencode/` 目录下的文件:
 
 ```bash
@@ -38,6 +40,7 @@ Config: `~/.config/opencode/global-config.md`
 ```json
 {
     "plugin": [
+        "oh-my-opencode",
         "@tarquinen/opencode-dcp@latest", 
         "cc-safety-net"
     ],

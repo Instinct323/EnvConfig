@@ -4,7 +4,7 @@
 
 - Vision: Gemini > GPT = Doubao > Kimi
 
-[LLM Benchmark](https://livebench.ai/#/) (Qwen 效果不佳):
+[Livebench](https://livebench.ai/#/) (Qwen 效果不佳):
 
 - Reasoning: Claude = GPT > Gemini > Deepseek > Kimi
 - Coding: GPT > Claude > Gemini > Doubao > Kimi > Deepseek
