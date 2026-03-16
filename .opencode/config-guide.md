@@ -68,6 +68,8 @@ Config: `~/.config/opencode/global-config.md`
 参考官方安装指南：
 - 文档：https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/refs/heads/dev/docs/guide/installation.md
 
+将 [config/oh-my-opencode.json]() 添加到 `~/.config/opencode/` 中
+
 ### provider
 
 所有完成配置的 `API_KEY` 都可以在 `~/.config/opencode/opencode.json` 中找到 (注意，`API_KEY` 不应该被存储在这之外的任何文件中)
@@ -82,8 +84,6 @@ Config: `~/.config/opencode/global-config.md`
 
 - 百炼：[provider/bailian.md]()
 - 火山引擎：[provider/volcengine.md]()
-
-最后，你需要按照 [model-config.md]() 配置模型
 
 ---
 
