@@ -39,22 +39,23 @@ Config: `~/.config/opencode/global-config.md`
 
 ```json
 {
-    "plugin": [
-        "oh-my-opencode",
-        "@tarquinen/opencode-dcp@latest", 
-        "cc-safety-net"
-    ],
-    "compaction": {
-        "auto": true,
-        "prune": true,
-        "reserved": 10000
-    },
-    "lsp": {
-        "python": {
-            "command": ["pyright-langserver", "--stdio"],
-            "extensions": [".py", ".pyi"]
-        }
+  "plugin": [
+    "oh-my-opencode",
+    "cc-safety-net",
+    "@tarquinen/opencode-dcp@latest",
+    "oc-chatgpt-multi-auth@latest"
+  ],
+  "compaction": {
+    "auto": true,
+    "prune": true,
+    "reserved": 10000
+  },
+  "lsp": {
+    "python": {
+      "command": ["pyright-langserver", "--stdio"],
+      "extensions": [".py", ".pyi"]
     }
+  }
 }
 ```
 
@@ -68,7 +69,7 @@ Config: `~/.config/opencode/global-config.md`
 参考官方安装指南：
 - 文档：https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/refs/heads/dev/docs/guide/installation.md
 
-将 [config/oh-my-opencode.json]() 添加到 `~/.config/opencode/` 中
+将 [config/oh-my-opencode.json]() 覆盖写入到 `~/.config/opencode/` 中
 
 ### provider
 
