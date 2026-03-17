@@ -1,7 +1,5 @@
 # Configuration Guide
 
-这个教程的每一步都极其重要，请一字不漏地阅读并记录每个步骤的完成情况
-
 如果你不是从本地文件中读取该文档，请先把该仓库 clone 到本地 (配置结束后删除)，以使用其中 `.opencode/` 目录下的文件:
 
 ```bash
@@ -35,30 +33,6 @@ git clone https://github.com/Instinct323/EnvConfig.git
 
 Config: `~/.config/opencode/global-config.md`
 
-将以下内容更新到 `~/.config/opencode/opencode.json`：
-
-```json
-{
-  "plugin": [
-    "oh-my-opencode",
-    "cc-safety-net",
-    "@tarquinen/opencode-dcp@latest",
-    "oc-chatgpt-multi-auth@latest"
-  ],
-  "compaction": {
-    "auto": true,
-    "prune": true,
-    "reserved": 10000
-  },
-  "lsp": {
-    "python": {
-      "command": ["pyright-langserver", "--stdio"],
-      "extensions": [".py", ".pyi"]
-    }
-  }
-}
-```
-
 ### anthropics-skills
 
 将以下仓库的 `skills` 目录下的技能添加到 `~/.config/opencode/skills/` 中：
@@ -66,8 +40,13 @@ Config: `~/.config/opencode/global-config.md`
 
 ### oh-my-openagent
 
-参考官方安装指南：
-- 文档：https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/refs/heads/dev/docs/guide/installation.md
+Doc: https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/refs/heads/dev/docs/guide/installation.md
+
+运行以下命令安装：
+
+```bash
+npx oh-my-opencode install --no-tui --claude=no --gemini=no --copilot=no
+```
 
 将 [config/oh-my-opencode.json]() 覆盖写入到 `~/.config/opencode/` 中
 
@@ -85,6 +64,33 @@ Config: `~/.config/opencode/global-config.md`
 
 - 百炼：[provider/bailian.md]()
 - 火山引擎：[provider/volcengine.md]()
+
+### opencode
+
+将以下内容更新到 `~/.config/opencode/opencode.json`：
+
+```json
+{
+  "plugin": [
+    "cc-safety-net",
+    "oh-my-opencode",
+    "@tarquinen/opencode-dcp@latest",
+    "oc-chatgpt-multi-auth@latest",
+    "opencode-antigravity-auth@latest"
+  ],
+  "compaction": {
+    "auto": true,
+    "prune": true,
+    "reserved": 10000
+  },
+  "lsp": {
+    "python": {
+      "command": ["pyright-langserver", "--stdio"],
+      "extensions": [".py", ".pyi"]
+    }
+  }
+}
+```
 
 ---
 
