@@ -6,8 +6,6 @@ Doc: https://help.aliyun.com/zh/model-studio/opencode-coding-plan
 
 在 Config 中更新以下内容，同时替换`YOUR_API_KEY`为用户输入的 API_KEY
 
-因为 Qwen 系列的表现较差，忽略其中的 Qwen 系列
-
 ```json
 {
     "$schema": "https://opencode.ai/config.json",

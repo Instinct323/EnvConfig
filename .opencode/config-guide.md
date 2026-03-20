@@ -57,8 +57,7 @@ npx oh-my-opencode install --no-tui --claude=no --gemini=no --copilot=no
 对于不同的供应商，你需要分别询问用户对于 `API_KEY` 的操作，给出以下几个选项：
 
 1. 写入新的 API_KEY
-2. 跳过配置 API_KEY
-3. 跳过该 provider 的配置
+2. 跳过配置 API_KEY (暂时留空 / 使用当前值)
 
 以下是目前支持的供应商，请依次按照以下教程配置：
 
