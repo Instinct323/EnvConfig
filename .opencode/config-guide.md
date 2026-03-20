@@ -38,7 +38,7 @@ Config: `~/.config/opencode/global-config.md`
 将以下仓库的 `skills` 目录下的技能添加到 `~/.config/opencode/skills/` 中：
 - 仓库：https://github.com/anthropics/skills
 
-### oh-my-openagent
+### [oh-my-openagent](https://github.com/code-yeongyu/oh-my-openagent)
 
 Doc: https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/refs/heads/dev/docs/guide/installation.md
 
