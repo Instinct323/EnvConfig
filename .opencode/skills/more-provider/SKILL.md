@@ -13,7 +13,7 @@ Add or update provider API keys in `~/.config/opencode/opencode.json`. The scrip
 Before using, run once to see current CLI contract:
 
 ```bash
-python scripts/set_apikey.py --help
+python <skill-dir>/scripts/set_apikey.py --help
 ```
 
 This shows available provider flags and their descriptions.
@@ -29,7 +29,7 @@ This shows available provider flags and their descriptions.
 ## CLI Pattern
 
 ```bash
-python scripts/set_apikey.py --provider1 "YOUR_KEY" --provider2 "YOUR_KEY"
+python <skill-dir>/scripts/set_apikey.py --provider1 "KEY1" --provider2 "KEY2"
 ```
 
 Omit flags for providers not being configured (empty keys are silently skipped).

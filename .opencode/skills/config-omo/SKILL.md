@@ -13,7 +13,7 @@ Install `oh-my-opencode.json`, filtering fallback_models to only include models 
 Before using, run the command once to check the current CLI contract:
 
 ```bash
-python scripts/config_omo.py --help
+python <skill-dir>/scripts/config_omo.py --help
 ```
 
 This will display available options and their descriptions.
