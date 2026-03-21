@@ -3,13 +3,11 @@ import json
 import os
 from pathlib import Path
 
-from openai import api_key
+os.chdir(Path(__file__).parent.parent)
 
 USERPATH = os.path.expanduser("~")
 CONFIG = Path(USERPATH) / ".config/opencode/opencode.json"
 ENCODING = "utf-8"
-
-WORKDIR = Path(__file__).parent.parent
 
 
 def load_dump_json(self: Path, data=None):
@@ -24,7 +22,7 @@ def load_provider(config: dict,
     api_key = api_key or provider_org.get("options", {}).get("apiKey")
     if not api_key: return False
 
-    provider = load_dump_json(WORKDIR / "provider" / f"{name}.json")["data"]
+    provider = load_dump_json(Path(f"provider/{name}.json"))["data"]
     provider["options"]["apiKey"] = api_key
 
     if not provider_org:
