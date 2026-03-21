@@ -1,0 +1,76 @@
+{
+  "doc": "https://cloud.baidu.com/doc/qianfan/s/Kmmymei1b",
+  "data": {
+    "npm": "@ai-sdk/openai-compatible",
+    "name": "baiduqianfancodingplan",
+    "options": {
+      "baseURL": "https://qianfan.baidubce.com/v2/coding",
+      "apiKey": "在此处获取：https://console.bce.baidu.com/qianfan/resource/subscribe"
+    },
+    "models": {
+      "minimax-m2.5": {
+        "name": "MiniMax-M2.5",
+        "modalities": {
+          "input": [
+            "text"
+          ],
+          "output": [
+            "text"
+          ]
+        },
+        "options": {
+          "thinking": {
+            "type": "enabled",
+            "budgetTokens": 32000
+          }
+        },
+        "limit": {
+          "context": 192000,
+          "output": 131072
+        }
+      },
+      "glm-5": {
+        "name": "GLM-5",
+        "modalities": {
+          "input": [
+            "text"
+          ],
+          "output": [
+            "text"
+          ]
+        },
+        "options": {
+          "thinking": {
+            "type": "enabled",
+            "budgetTokens": 32000
+          }
+        },
+        "limit": {
+          "context": 198000,
+          "output": 131072
+        }
+      },
+      "kimi-k2.5": {
+        "name": "Kimi-K2.5",
+        "modalities": {
+          "input": [
+            "text"
+          ],
+          "output": [
+            "text"
+          ]
+        },
+        "options": {
+          "thinking": {
+            "type": "enabled",
+            "budgetTokens": 32000
+          }
+        },
+        "limit": {
+          "context": 256000,
+          "output": 65536
+        }
+      }
+    }
+  }
+}

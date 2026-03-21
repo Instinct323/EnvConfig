@@ -33,14 +33,14 @@ git clone https://github.com/Instinct323/EnvConfig.git
 
 Config: `~/.config/opencode/global-config.md`
 
-### anthropics-skills
+### skills
 
-将以下仓库的 `skills` 目录下的技能添加到 `~/.config/opencode/skills/` 中：
-- 仓库：https://github.com/anthropics/skills
+将以下技能添加到 `~/.config/opencode/skills/` 中:
+
+- mine: 当前目录下的 [skills]() 文件夹下的技能
+- anthropics: 仓库 https://github.com/anthropics/skills 中的 `skills` 文件夹下的技能
 
 ### [oh-my-openagent](https://github.com/code-yeongyu/oh-my-openagent)
-
-Doc: https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/refs/heads/dev/docs/guide/installation.md
 
 运行以下命令安装：
 
@@ -48,21 +48,11 @@ Doc: https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/refs/heads/d
 npx oh-my-opencode install --no-tui --claude=no --gemini=no --copilot=no
 ```
 
-将 [config/oh-my-opencode.json]() 覆盖写入到 `~/.config/opencode/` 中
+最后，你需要建议用户进行以下步骤：
 
-### provider
-
-所有完成配置的 `API_KEY` 都可以在 `~/.config/opencode/opencode.json` 中找到 (注意，`API_KEY` 不应该被存储在这之外的任何文件中)
-
-对于不同的供应商，你需要分别询问用户对于 `API_KEY` 的操作，给出以下几个选项：
-
-1. 写入新的 API_KEY
-2. 跳过配置 API_KEY (暂时留空 / 使用当前值)
-
-以下是目前支持的供应商，请依次按照以下教程配置：
-
-- 百炼：[provider/bailian.md]()
-- 火山引擎：[provider/volcengine.md]()
+1. 重启 OpenCode，确保配置更新
+2. 使用技能 /more-provider 配置供应商
+3. 使用技能 /config-omo 更新模型配置
 
 ### opencode
 
