@@ -60,13 +60,7 @@ npx oh-my-opencode install --no-tui --claude=no --gemini=no --copilot=no
 
 ```json
 {
-  "plugin": [
-    "cc-safety-net",
-    "oh-my-opencode",
-    "@tarquinen/opencode-dcp@latest",
-    "oc-chatgpt-multi-auth@latest",
-    "opencode-antigravity-auth@latest"
-  ],
+  "autoupdate": true,
   "compaction": {
     "auto": true,
     "prune": true,
@@ -77,7 +71,14 @@ npx oh-my-opencode install --no-tui --claude=no --gemini=no --copilot=no
       "command": ["pyright-langserver", "--stdio"],
       "extensions": [".py", ".pyi"]
     }
-  }
+  },
+  "plugin": [
+    "cc-safety-net",
+    "oh-my-opencode",
+    "@tarquinen/opencode-dcp@latest",
+    "oc-chatgpt-multi-auth@latest",
+    "opencode-antigravity-auth@latest"
+  ]
 }
 ```
 
