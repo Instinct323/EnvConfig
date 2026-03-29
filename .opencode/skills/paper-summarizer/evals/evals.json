@@ -1,0 +1,28 @@
+{
+  "skill_name": "paper-summarizer",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "请一次性同时调研以下多篇论文并输出 Cross-Paper Analysis：\n- https://github.com/facebookresearch/sam2 \n- https://arxiv.org/abs/2408.14035 \n- 3D gaussian splatting for real-time radiance field rendering",
+      "expected_output": "A mixed-input multi-paper run (GitHub repo URL + arXiv URL + title) under .sisyphus/evidence/<run-id>/ with normalized paper identities, per-paper source/report artifacts, verifier evidence for Step 2/3, and merged Cross-Paper Analysis with merge provenance",
+      "files": [],
+      "expectations": [
+        "A new run directory is created under .sisyphus/evidence/<run-id>/ and all artifacts stay inside that run directory",
+        "All three heterogeneous inputs (repository URL, paper URL, paper title) are resolved to concrete paper identities before delegation",
+        "Step 1 is accepted by orchestrator: registry.json is parseable and all tracked fields are initialized to empty string (not processed)",
+        "registry.json exists and contains deterministic short-title entries for all requested papers",
+        "Registry entries do not collapse different input types into a single paper unless identity resolution evidence proves they are the same work",
+        "Each paper directory contains source.pdf and source.txt, and source.txt is plain-text transcription of source.pdf (not a summary)",
+        "Each paper directory contains required report.md before finalization",
+        "Delegation outputs include verifier PASS/FAIL evidence for both Step 2 and Step 3",
+        "Step 3 verifier evidence confirms schema order and PDF-read-before-summary grounding for each paper",
+        "Each paper is processed in its own delegated task with PAPER_COUNT: 1",
+        "Metadata-only summary is rejected; per-paper reporting must be grounded in downloaded PDF content",
+        "Final response includes merge provenance with input report paths, merge order, and merged output path",
+        "Step 4 finalize gate is enforced: merged output is allowed only after per-paper report existence and final registry sync PASS",
+        "Registry fields use correct semantics: empty=not processed, none=not found, path/URL=found",
+        "Run verdict follows contract: APPROVE only when all steps pass (or allowed NA), otherwise REJECT"
+      ]
+    }
+  ]
+}
