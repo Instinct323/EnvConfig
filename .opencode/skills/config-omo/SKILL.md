@@ -1,12 +1,12 @@
 ---
 name: config-omo
-description: Install filtered `oh-my-opencode.json` using locally available models. Run `python scripts/config_omo.py --help` first to see current options.
+description: Install filtered `oh-my-openagent.json` using locally available models. Run `python scripts/config_omo.py --help` first to see current options.
 version: 1.0.0
 ---
 
 # config-omo
 
-Install `oh-my-opencode.json`, filtering fallback_models to only include models available in your environment.
+Install `oh-my-openagent.json`, filtering fallback_models to only include models available in your environment.
 
 ## Discovery
 

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/dev/assets/oh-my-opencode.schema.json",
+  "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/dev/assets/oh-my-opencode.schema.json",
   "model_fallback": true,
   "agents": {
 
@@ -129,7 +129,7 @@
       "fallback_models": [
         "google/antigravity-claude-opus-4-5-thinking",
         "google/antigravity-gemini-3-pro",
-        "volcengine-plan/ark-code-latest",
+        "volcengine-plan/doubao-seed-2.0-code",
         "bailian-coding-plan/kimi-k2.5",
         "baiduqianfancodingplan/kimi-k2.5"
       ],

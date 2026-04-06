@@ -5,7 +5,7 @@
     "name": "Model Studio Coding Plan",
     "options": {
       "baseURL": "https://coding.dashscope.aliyuncs.com/apps/anthropic/v1",
-      "apiKey": ""
+      "apiKey": "YOUR_API_KEY"
     },
     "models": {
       "qwen3.5-plus": {

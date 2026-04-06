@@ -35,17 +35,19 @@ Config: `~/.config/opencode/global-config.md`
 
 ### skills
 
-将以下技能添加到 `~/.config/opencode/skills/` 中:
+运行以下命令安装：
 
-- mine: 当前目录下的 [skills]() 文件夹下的技能
-- anthropics: 仓库 https://github.com/anthropics/skills 中的 `skills` 文件夹下的技能
+```bash
+chmod +x *.bash
+./install-skills.bash
+```
 
 ### [oh-my-openagent](https://github.com/code-yeongyu/oh-my-openagent)
 
 运行以下命令安装：
 
 ```bash
-npx oh-my-opencode install --no-tui --claude=no --gemini=no --copilot=no
+npx oh-my-openagent install --no-tui --claude=no --gemini=no --copilot=no
 ```
 
 最后，你需要建议用户进行以下步骤：
@@ -74,7 +76,7 @@ npx oh-my-opencode install --no-tui --claude=no --gemini=no --copilot=no
   },
   "plugin": [
     "cc-safety-net",
-    "oh-my-opencode",
+    "oh-my-openagent",
     "@tarquinen/opencode-dcp@latest",
     "oc-chatgpt-multi-auth@latest",
     "opencode-antigravity-auth@latest"
@@ -92,9 +94,3 @@ Config: `AGENTS.md`
 
 - 始终使用中文回复，可穿插少量英文术语
 - 如果你在工作过程中产出了过程文件 (草稿，测试脚本，测试结果)，使用完成后删除
-
-### Include
-
-你需要加载并阅读以下文件，提炼其要点添加到配置文件中:
-
-- [code-style.md](): 代码风格

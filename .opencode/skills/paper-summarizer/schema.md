@@ -29,7 +29,7 @@
 
 ## Reproducibility
 
-(How can we reproduce this work?)
+(How can we reproduce this work? You **must** refer to the documentation in the **published repository**.)
 
 ### Resources
 

@@ -10,5 +10,5 @@ update_date:
   wechat:
     # ~/wxid_yysjo0g4xjjn22_a74f
     # rm: business/migrate
-    _backup: 2026-02-11
-    _clean: 2026-02     # msg
+    _backup: 2026-04-02
+    _clean: 2026-03     # msg

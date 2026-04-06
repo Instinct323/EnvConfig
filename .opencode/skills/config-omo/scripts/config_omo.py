@@ -60,12 +60,12 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--src", type=str,
-        default="https://raw.githubusercontent.com/Instinct323/EnvConfig/master/.opencode/config/oh-my-opencode.json",
-        # default="tmp/oh-my-opencode.json",
+        default="https://raw.githubusercontent.com/Instinct323/EnvConfig/master/.opencode/config/oh-my-openagent.json",
+        # default="tmp/oh-my-openagent.json",
         help="Path or URL of the configuration file"
     )
     parser.add_argument(
-        "--dst", type=str, default=f"{USERPATH}/.config/opencode/oh-my-opencode.json",
+        "--dst", type=str, default=f"{USERPATH}/.config/opencode/oh-my-openagent.json",
         help="Installation path of the configuration file"
     )
     parser.add_argument(

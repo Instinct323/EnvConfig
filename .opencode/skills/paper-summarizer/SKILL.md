@@ -10,7 +10,7 @@ Generate structured reports from academic papers. Supports single-paper deep div
 ## Core Principles
 
 1. **Evidence first**: Read downloaded PDF before writing any summary.
-2. **Full transcription**: `source.txt` must be complete plain text of `source.pdf`, not summary or excerpt.
+2. **Full extraction**: `source.md` must be complete Markdown extraction of `source.pdf`, not summary or excerpt.
 3. **Schema order**: Emit report sections in the exact order defined in `schema.md`.
 4. **No metadata-only summaries**: Never summarize from title/abstract alone.
 5. **Citation safety**: Never use citation index (`[n]`) as paper title without verified mapping.
@@ -25,7 +25,7 @@ Location: `.sisyphus/evidence/<run-id>/registry.json`
   "<short-title>": {
     "repo": "url|none|\"\"",
     "pdf": "path|none|\"\"",
-    "txt": "path|none|\"\"",
+    "markdown": "path|none|\"\"",
     "report": "path|none|\"\""
   }
 }
@@ -44,7 +44,7 @@ Per-paper directory: `.sisyphus/evidence/<run-id>/<short-title>/`
 | Artifact     | Required | Description                        |
 |--------------|----------|------------------------------------|
 | `source.pdf` | Yes      | Downloaded PDF                     |
-| `source.txt` | Yes      | Full plain-text transcription      |
+| `source.md`  | Yes      | Full Markdown extraction           |
 | `report.md`  | Yes      | Structured summary per `schema.md` |
 
 ## Workflow
@@ -64,7 +64,7 @@ python <skill-dir>/scripts/init_registry.py <run-id> --papers paper1 paper2
 One delegated task per paper (`quick` agent):
 
 1. Download PDF → `source.pdf`
-2. Extract full text → `source.txt`
+2. Use `mineru` skill to convert PDF to Markdown (`extract` mode) → `source.md`
 3. Find repository URL
 4. Update registry fields
 
@@ -78,14 +78,14 @@ python <skill-dir>/scripts/check_source.py <run-id> --paper <short-title>
 python <skill-dir>/scripts/check_source.py <run-id>
 ```
 
-**Gate**: Exit code 0, PDF+TXT exist, TXT is full transcription (not summary), registry synced.
+**Gate**: Exit code 0, PDF+MD exist, MD is full extraction (not summary), registry synced.
 
 ### Step 3: Report
 
 One delegated task per paper (`ultrabrain` agent):
 
 1. Read `<skill-dir>/schema.md` for section order
-2. Read downloaded PDF
+2. Read extracted Markdown (`source.md`)
 3. Generate `report.md` following schema
 4. Update registry
 
@@ -99,7 +99,7 @@ python <skill-dir>/scripts/check_report.py <run-id> --paper <short-title>
 python <skill-dir>/scripts/check_report.py <run-id>
 ```
 
-**Gate**: Exit code 0, schema order correct, PDF read before summary, claims grounded in PDF content.
+**Gate**: Exit code 0, schema order correct, source.md read before summary, claims grounded in PDF content.
 
 ### Step 4: Finalize
 
@@ -127,9 +127,9 @@ python <skill-dir>/scripts/final_report.py <run-id>
 
 ## Common Failures
 
-- Missing `source.pdf`, `source.txt`, or `report.md`
-- `source.txt` is summary/excerpt instead of full PDF transcription
-- Summarized without reading downloaded PDF
+- Missing `source.pdf`, `source.md`, or `report.md`
+- `source.md` is summary/excerpt instead of full PDF extraction
+- Summarized without reading extracted Markdown
 - Step 2/3 executed without running validation scripts
 - Multi-paper merge lacks provenance information
 - Artifacts written outside `.sisyphus/evidence/<run-id>/`

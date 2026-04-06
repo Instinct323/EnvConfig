@@ -22,7 +22,7 @@ def print_msg(msg: list[str]):
 
 
 class Registry:
-    FIELD_SOURCE = ["repo", "pdf", "txt"]
+    FIELD_SOURCE = ["repo", "pdf", "text"]
     FIELD_RESULT = ["report"]
 
     def __init__(self,
