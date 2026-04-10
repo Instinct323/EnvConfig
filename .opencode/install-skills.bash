@@ -16,4 +16,5 @@ rm -rf skills
 # clawhub: https://clawhub.ai/
 cd $OC_CONFIG
 npm i -g clawhub
-clawhub install mineru-ai   # https://clawhub.ai/mineru-extract/mineru-ai
+clawhub install --force github
+clawhub install --force mineru-ai

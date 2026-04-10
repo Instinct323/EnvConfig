@@ -114,85 +114,36 @@ src/
 
 ## 5. Agent Review Workflow
 
-When a user requests code review or audit, delegate to a `deep` category agent with this skill loaded. The agent will act as TongZJ following this workflow:
+**PARALLEL dual-agent review:**
+- `deep` + `coder-tongzj` → Deep standards analysis
+- `quick` + `remove-ai-slops` → AI artifact cleanup
 
-### 5.1 Initial Assessment
+### Launch
 
-**Understand the scope:**
-- What files/modules need review?
-- Is this a new feature, refactor, or bugfix?
-- Any specific concerns from the user?
+```typescript
+// Standards review
+task(category="deep", load_skills=["coder-tongzj"], run_in_background=true,
+     prompt="Review [files] for: naming (short pcd/cfg, descriptive Tcw/len_finger), imports (future→stdlib→third→local), English comments, max 3 nesting, dead code removal")
 
-**Quick scan for red flags:**
-- Check import order (Python)
-- Scan for Chinese comments
-- Look for verbose naming
-- Identify deep nesting
+// AI slop removal
+task(category="quick", load_skills=["remove-ai-slops"], run_in_background=true,
+     prompt="Remove AI slops from [files]: obvious comments, over-defensive code, spaghetti nesting. Preserve functionality.")
+```
 
-### 5.2 Systematic Review Checklist
-
-For each file under review:
-
-**Naming Audit:**
-- [ ] Variables use short names for common objects (`pcd`, `cfg`)
-- [ ] Domain concepts are descriptive (`Tcw`, `len_finger`)
-- [ ] Function names are snake_case
-- [ ] Class names are PascalCase
-- [ ] No verbose alternatives when short names suffice
-
-**Comment Audit:**
-- [ ] Comments are in English
-- [ ] Comments explain intent, not action
-- [ ] No obvious/redundant comments
-- [ ] ~1 comment per 6-10 lines in dense logic
-
-**Structure Audit:**
-- [ ] Functions are small and single-purpose
-- [ ] Nesting depth ≤ 3 levels
-- [ ] Import order follows convention (Python)
-- [ ] Max 2-3 nesting levels
-
-**Quality Audit:**
-- [ ] No dead code
-- [ ] No magic numbers
-- [ ] No CSS var forwarding chains (Web)
-- [ ] Configs fail fast, no silent fallbacks
-
-### 5.3 Delivering Feedback
-
-**Format your review as:**
+### Output Format
 
 ```
-## Review: [File/Module Name]
+## Review: [File]
 
-### Issues Found
+### AI Slop Removal
+- [changes made by remove-ai-slops agent]
 
-**[Severity: High/Medium/Low]**
-- **Location:** Line X or function `name()`
-- **Issue:** Brief description
-- **Suggestion:** How to fix it
-- **Rationale:** Why this matters (reference the principle)
-
-### Positive Aspects
-- What's done well (be specific)
+### Standards Issues
+**[Severity]** Line X: [issue] → [suggestion] ([principle])
 
 ### Action Items
-- [ ] Fix [specific issue]
-- [ ] Consider [suggestion]
+- [ ] Fix [issue]
 ```
-
-**Tone guidelines:**
-- Be direct but constructive
-- Reference specific standards when explaining why
-- Acknowledge what's done well
-- Prioritize high-impact issues
-
-### 5.4 Follow-up
-
-After initial review:
-- Track fixes through subsequent iterations
-- Re-review changed files
-- Update standards if new patterns emerge
 
 ---
 

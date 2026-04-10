@@ -1,86 +1,37 @@
 {
-  "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/dev/assets/oh-my-opencode.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/dev/assets/oh-my-opencode.schema.json",
+  "description": "https://github.com/code-yeongyu/oh-my-openagent/blob/dev/src/shared/model-requirements.ts",
+
   "model_fallback": true,
+
   "agents": {
-
     "sisyphus": {
-      "model": "google/antigravity-claude-opus-4-5-thinking",
+      "model": "google/antigravity-claude-opus-4-6-thinking",
       "fallback_models": [
         "bailian-coding-plan/kimi-k2.5",
         "baiduqianfancodingplan/kimi-k2.5",
         "volcengine-plan/kimi-k2.5",
         "openai/gpt-5.4"
       ],
-      "description": "核心调度器: Claude Opus → opencode-go/kimi-k2.5 → K2P5 → GPT-5.4 → GLM-5 → Big Pickle"
+      "description": "核心调度器"
     },
-    "metis": {
-      "model": "google/antigravity-claude-opus-4-5-thinking",
-      "fallback_models": [
-        "bailian-coding-plan/glm-5",
-        "baiduqianfancodingplan/kimi-k2.5",
-        "volcengine-plan/kimi-k2.5",
-        "openai/gpt-5.4"
-      ],
-      "description": "计划缺陷分析器: Claude Opus → opencode-go/glm-5 → K2P5"
-    },
-
-    "prometheus": {
-      "model": "google/antigravity-claude-opus-4-5-thinking",
-      "fallback_models": [
-        "openai/gpt-5.4",
-        "bailian-coding-plan/glm-5",
-        "baiduqianfancodingplan/glm-5",
-        "volcengine-plan/kimi-k2.5"
-      ],
-      "description": "战略规划师: Claude Opus → GPT-5.4 → opencode-go/glm-5 → Gemini 3.1 Pro"
-    },
-    "atlas": {
-      "model": "google/antigravity-claude-sonnet-4-6",
-      "fallback_models": [
-        "bailian-coding-plan/kimi-k2.5",
-        "baiduqianfancodingplan/kimi-k2.5",
-        "volcengine-plan/kimi-k2.5",
-        "openai/gpt-5.4"
-      ],
-      "description": "任务调度器: Claude Sonnet → opencode-go/kimi-k2.5"
-    },
-
     "hephaestus": {
       "model": "openai/gpt-5.3-codex",
-      "description": "自主深度工作者: GPT-5.3 Codex only"
+      "description": "自主深度工作者"
     },
     "oracle": {
       "model": "openai/gpt-5.4",
       "fallback_models": [
         "google/antigravity-gemini-3-pro",
-        "google/antigravity-claude-opus-4-5-thinking",
-        "bailian-coding-plan/kimi-k2.5",
-        "baiduqianfancodingplan/kimi-k2.5",
+        "google/antigravity-claude-opus-4-6-thinking",
+        "bailian-coding-plan/glm-5",
+        "baiduqianfancodingplan/glm-5",
         "volcengine-plan/kimi-k2.5"
       ],
-      "description": "架构顾问 (只读式高智商咨询): GPT-5.4 → Gemini 3.1 Pro → Claude Opus"
-    },
-    "momus": {
-      "model": "openai/gpt-5.4",
-      "fallback_models": [
-        "google/antigravity-claude-opus-4-5-thinking",
-        "google/antigravity-gemini-3-pro",
-        "bailian-coding-plan/kimi-k2.5",
-        "baiduqianfancodingplan/kimi-k2.5",
-        "volcengine-plan/kimi-k2.5"
-      ],
-      "description": "严苛的评审者 (验证与计划评审): GPT-5.4 → Claude Opus → Gemini 3.1 Pro"
+      "description": "架构顾问 (只读式高智商咨询)"
     },
 
-    "explore": {
-      "model": "bailian-coding-plan/MiniMax-M2.5",
-      "fallback_models": [
-        "baiduqianfancodingplan/minimax-m2.5",
-        "volcengine-plan/minimax-m2.5",
-        "opencode/minimax-m2.5-free"
-      ],
-      "description": "代码库快速检索 (速度就是一切, 并行启动 10 个任务): Grok Code Fast → opencode-go/minimax-m2.5 → MiniMax Free → Haiku → GPT-5-Nano"
-    },
     "librarian": {
       "model": "bailian-coding-plan/MiniMax-M2.5",
       "fallback_models": [
@@ -88,7 +39,16 @@
         "volcengine-plan/minimax-m2.5",
         "opencode/minimax-m2.5-free"
       ],
-      "description": "文档/代码搜索 (文档检索不需要深入推理): opencode-go/minimax-m2.5 → MiniMax Free → Haiku → GPT-5-Nano"
+      "description": "文档/代码搜索 (文档检索不需要深入推理)"
+    },
+    "explore": {
+      "model": "bailian-coding-plan/MiniMax-M2.5",
+      "fallback_models": [
+        "baiduqianfancodingplan/minimax-m2.5",
+        "volcengine-plan/minimax-m2.5",
+        "opencode/minimax-m2.5-free"
+      ],
+      "description": "代码库快速检索 (速度就是一切, 并行启动 10 个任务)"
     },
     "multimodal-looker": {
       "model": "openai/gpt-5.4",
@@ -97,55 +57,108 @@
         "baiduqianfancodingplan/kimi-k2.5",
         "volcengine-plan/kimi-k2.5"
       ],
-      "description": "视觉/截图 (使用第一个可用的、具备多模态能力的降级方案): GPT-5.4 → opencode-go/kimi-k2.5 → GLM-4.6v → GPT-5-Nano"
-    }
+      "description": "视觉/截图 (使用第一个可用的、具备多模态能力的降级方案)"
+    },
 
+    "prometheus": {
+      "model": "google/antigravity-claude-opus-4-6-thinking",
+      "fallback_models": [
+        "openai/gpt-5.4",
+        "bailian-coding-plan/glm-5",
+        "baiduqianfancodingplan/glm-5",
+        "volcengine-plan/kimi-k2.5"
+      ],
+      "description": "战略规划师"
+    },
+    "metis": {
+      "model": "google/antigravity-claude-opus-4-6-thinking",
+      "fallback_models": [
+        "openai/gpt-5.4",
+        "bailian-coding-plan/glm-5",
+        "baiduqianfancodingplan/glm-5",
+        "volcengine-plan/kimi-k2.5"
+      ],
+      "description": "计划缺陷分析器"
+    },
+    "momus": {
+      "model": "openai/gpt-5.4",
+      "fallback_models": [
+        "google/antigravity-claude-opus-4-6-thinking",
+        "google/antigravity-gemini-3-pro",
+        "bailian-coding-plan/glm-5",
+        "baiduqianfancodingplan/glm-5",
+        "volcengine-plan/kimi-k2.5"
+      ],
+      "description": "严苛的评审者 (验证与计划评审)"
+    },
+
+    "atlas": {
+      "model": "google/antigravity-claude-sonnet-4-6",
+      "fallback_models": [
+        "bailian-coding-plan/kimi-k2.5",
+        "baiduqianfancodingplan/kimi-k2.5",
+        "volcengine-plan/kimi-k2.5",
+        "openai/gpt-5.4"
+      ],
+      "description": "任务调度器"
+    },
+    "sisyphus-junior": {
+      "model": "google/antigravity-claude-sonnet-4-6",
+      "fallback_models": [
+        "bailian-coding-plan/kimi-k2.5",
+        "baiduqianfancodingplan/kimi-k2.5",
+        "volcengine-plan/kimi-k2.5",
+        "openai/gpt-5.4"
+      ],
+      "description": "类目执行器"
+    }
   },
+
   "categories": {
     "visual-engineering": {
-      "model": "google/antigravity-gemini-3-pro",
+      "model": "google/antigravity-gemini-3.1-pro",
       "fallback_models": [
         "bailian-coding-plan/glm-5",
         "baiduqianfancodingplan/glm-5",
-        "google/antigravity-claude-opus-4-5-thinking",
+        "google/antigravity-claude-opus-4-6-thinking",
         "openai/gpt-5.4",
         "volcengine-plan/kimi-k2.5"
       ],
-      "description": "前端，UI，CSS，设计: Gemini 3.1 Pro → GLM 5 → Claude Opus"
+      "description": "前端，UI，CSS，设计"
     },
     "ultrabrain": {
       "model": "openai/gpt-5.4",
       "fallback_models": [
-        "google/antigravity-gemini-3-pro",
-        "google/antigravity-claude-opus-4-5-thinking",
+        "google/antigravity-gemini-3.1-pro",
+        "google/antigravity-claude-opus-4-6-thinking",
         "volcengine-plan/deepseek-v3.2",
-        "bailian-coding-plan/kimi-k2.5",
-        "baiduqianfancodingplan/kimi-k2.5"
+        "bailian-coding-plan/glm-5",
+        "baiduqianfancodingplan/glm-5"
       ],
-      "description": "需要最大推理强度: GPT-5.4 → Gemini 3.1 Pro → Claude Opus"
+      "description": "需要最大推理强度"
     },
     "deep": {
       "model": "openai/gpt-5.3-codex",
       "fallback_models": [
-        "google/antigravity-claude-opus-4-5-thinking",
-        "google/antigravity-gemini-3-pro",
+        "google/antigravity-claude-opus-4-6-thinking",
+        "google/antigravity-gemini-3.1-pro",
         "volcengine-plan/doubao-seed-2.0-code",
         "bailian-coding-plan/kimi-k2.5",
         "baiduqianfancodingplan/kimi-k2.5"
       ],
-      "description": "深度编码，复杂逻辑处理: GPT-5.3 Codex → Claude Opus → Gemini 3.1 Pro"
+      "description": "深度编码，复杂逻辑处理"
     },
 
     "artistry": {
-      "model": "google/antigravity-gemini-3-pro",
+      "model": "google/antigravity-gemini-3.1-pro",
       "fallback_models": [
-        "google/antigravity-claude-opus-4-5-thinking",
+        "google/antigravity-claude-opus-4-6-thinking",
         "openai/gpt-5.4",
         "bailian-coding-plan/kimi-k2.5",
         "baiduqianfancodingplan/kimi-k2.5",
         "volcengine-plan/kimi-k2.5"
       ],
-      "description": "富有创意、新颖的方法: Gemini 3.1 Pro → Claude Opus → GPT-5.4"
+      "description": "富有创意、新颖的方法"
     },
     "quick": {
       "model": "bailian-coding-plan/MiniMax-M2.5",
@@ -154,19 +167,9 @@
         "volcengine-plan/minimax-m2.5",
         "opencode/minimax-m2.5-free"
       ],
-      "description": "简单、快速的任务: Claude Haiku → Gemini Flash → GPT-5-Nano"
+      "description": "简单、快速的任务"
     },
 
-    "unspecified-high": {
-      "model": "google/antigravity-claude-opus-4-5-thinking",
-      "fallback_models": [
-        "openai/gpt-5.4",
-        "bailian-coding-plan/glm-5",
-        "baiduqianfancodingplan/glm-5",
-        "volcengine-plan/kimi-k2.5"
-      ],
-      "description": "一般复杂工作: Claude Opus → GPT-5.4 (high) → GLM 5 → K2P5"
-    },
     "unspecified-low": {
       "model": "google/antigravity-claude-sonnet-4-6",
       "fallback_models": [
@@ -175,18 +178,28 @@
         "baiduqianfancodingplan/kimi-k2.5",
         "volcengine-plan/kimi-k2.5"
       ],
-      "description": "一般标准工作: Claude Sonnet → GPT-5.3 Codex → Gemini Flash"
+      "description": "一般标准工作"
+    },
+    "unspecified-high": {
+      "model": "google/antigravity-claude-opus-4-6-thinking",
+      "fallback_models": [
+        "openai/gpt-5.4",
+        "bailian-coding-plan/glm-5",
+        "baiduqianfancodingplan/glm-5",
+        "volcengine-plan/kimi-k2.5"
+      ],
+      "description": "一般复杂工作"
     },
     "writing": {
       "model": "google/antigravity-gemini-3-flash",
       "fallback_models": [
-        "google/antigravity-claude-sonnet-4-6",
-        "openai/gpt-5.4",
         "bailian-coding-plan/kimi-k2.5",
         "baiduqianfancodingplan/kimi-k2.5",
-        "volcengine-plan/kimi-k2.5"
+        "volcengine-plan/kimi-k2.5",
+        "google/antigravity-claude-sonnet-4-6",
+        "openai/gpt-5.4"
       ],
-      "description": "文本、文档、散文: Gemini Flash → Claude Sonnet"
+      "description": "文本、文档、散文"
     }
   }
 }
