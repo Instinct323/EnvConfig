@@ -48,31 +48,25 @@ Configuration:
 
   Excel2LaTeX: https://www.ctan.org/tex-archive/support/excel2latex
 
-  JetBrains-plugins:
-    # Memory-Settings
-    # Registry: run.processes.with.pty = False
-    - GitHub Copilot
-    - GLB Viewer
-    - Markdown Editor
-    - PDF Viewer
-    - TeXiFy-IDEA: https://hannah-sten.github.io/TeXiFy-IDEA/installation-guide.html
-    - Translation
+  # Memory-Settings
+  # Registry: run.processes.with.pty = False
+  JetBrains-plugins: [
+    "GitHub Copilot", "GLB Viewer", "Markdown Editor", "PDF Viewer", "TeXiFy-IDEA", "Translation"
+  ]
+
+  Nice-fonts: [
+    "Cambria Math", "Candara", "Dubai", "Footlight MT Light", "Times New Roman"
+  ]
 
   # VcXsrv/X0.hosts: Host IP address list
   #   docker: DISPLAY=host.docker.internal:$NUM
   #   ssh: DISPLAY=$HOST:$NUM
   VcXsrv: https://sourceforge.net/projects/vcxsrv/files/
 
-  Zotero-plugins:
-    WebDAV: https://infini-cloud.net/en/index.html
-    better-bibtex: https://github.com/retorquere/zotero-better-bibtex
-    format-metadata: https://github.com/northword/zotero-format-metadata
-    pdf-translate: https://github.com/windingwind/zotero-pdf-translate
-
-
-Nice-fonts:
-  - Cambria Math
-  - Candara
-  - Dubai
-  - Footlight MT Light
-  - Times New Roman
+  # WebDAV: https://infini-cloud.net/en/index.html
+  Zotero-plugins: [
+    "https://github.com/retorquere/zotero-better-bibtex",
+    "https://github.com/northword/zotero-format-metadata",
+    "https://github.com/windingwind/zotero-pdf-translate",
+    "https://github.com/federicotorrielli/zotero-metadata-hunter",
+  ]
