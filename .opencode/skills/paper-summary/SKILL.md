@@ -1,5 +1,5 @@
 ---
-name: paper-summarizer
+name: paper-summary
 description: Summarize academic papers with strict evidence isolation. Use when user mentions papers, PDFs, arXiv, research papers, literature review, or cross-paper analysis.
 ---
 

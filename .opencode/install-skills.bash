@@ -24,3 +24,4 @@ cd $OC_CONFIG
 npm i -g clawhub
 clawhub install --force github
 clawhub install --force mineru-ai
+clawhub install --force multi-search-engine
