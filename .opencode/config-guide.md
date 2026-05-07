@@ -42,20 +42,6 @@ chmod +x *.bash
 ./install-skills.bash
 ```
 
-### [oh-my-openagent](https://github.com/code-yeongyu/oh-my-openagent)
-
-运行以下命令安装：
-
-```bash
-npx oh-my-openagent install --no-tui --claude=no --gemini=no --copilot=no
-```
-
-最后，你需要建议用户进行以下步骤：
-
-1. 重启 OpenCode，确保配置更新
-2. 使用技能 /more-provider 配置供应商
-3. 使用技能 /config-omo 更新模型配置
-
 ### opencode
 
 将以下内容更新到 `~/.config/opencode/opencode.json`：
