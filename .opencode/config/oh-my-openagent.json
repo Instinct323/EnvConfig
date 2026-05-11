@@ -1,6 +1,9 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/dev/assets/oh-my-opencode.schema.json",
+  "description": "https://github.com/code-yeongyu/oh-my-openagent/blob/dev/src/shared/model-requirements.ts",
+
+  "model_fallback": true,
 
   "agents": {
     "sisyphus": {

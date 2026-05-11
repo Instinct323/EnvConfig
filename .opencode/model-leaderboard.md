@@ -1,3 +1,7 @@
+[OpenCode Recommendations](https://github.com/code-yeongyu/oh-my-openagent/blob/dev/src/shared/model-requirements.ts)
+
+---
+
 [ARC Prize](https://arcprize.org/leaderboard): Gemini > GPT > Claude > Kimi > Minimax > GLM-5 > Deepseek > Qwen
 
 [Chatbot](https://openlm.ai/chatbot-arena/): 
