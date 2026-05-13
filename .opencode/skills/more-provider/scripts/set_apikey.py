@@ -18,6 +18,7 @@ def load_dump_json(self: Path, data=None):
 def load_provider(config: dict,
                   name: str,
                   api_key: str) -> bool:
+    config.setdefault("provider", {})
     provider_org = config["provider"].get(name, {})
     api_key = api_key or provider_org.get("options", {}).get("apiKey")
     if not api_key: return False
