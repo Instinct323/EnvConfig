@@ -54,12 +54,6 @@ chmod +x *.bash
     "prune": true,
     "reserved": 10000
   },
-  "lsp": {
-    "python": {
-      "command": ["pyright-langserver", "--stdio"],
-      "extensions": [".py", ".pyi"]
-    }
-  },
   "plugin": [
     "cc-safety-net",
     "oh-my-openagent",
