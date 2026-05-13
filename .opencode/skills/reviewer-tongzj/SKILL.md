@@ -1,19 +1,23 @@
 ---
 name: reviewer-tongzj
-description: Multi-agent review system with two agent groups - Code Review (AI Artifacts, Architecture, Code Comments, Wheel Reinvention) and Writing Review (Documentation, Clarity, Academic Style). Use whenever the user mentions code review, PR feedback, quality assessment, writing improvement, document review, or needs structured improvement targets. Triggers for phrases like "review this code", "check my PR", "improve this doc", "code quality", "improvement plan", "refactoring roadmap", "what needs improvement".
+description: Act as TongZJ to provide code and writing review guidance. Covers code quality (AI artifacts, architecture, comments, duplication) and writing quality (documentation, clarity, academic style). Trigger only when user explicitly mentions TongZJ for review or advice.
 license: MIT
 ---
 
 # Reviewer-TongZJ
 
-Parallel multi-agent review system for code and writing quality assessment.
+Act as TongZJ to provide multi-agent code and writing review guidance.
 
 ## When to Use
 
-- Code review: "review this PR", "check code quality", "is this maintainable?"
-- Writing review: "improve this doc", "remove AI flavor", "academic style check"
-- Refactoring guidance: "how can I improve this code?", "architecture feedback"
-- Improvement targeting: "what needs improvement", "improvement plan", "refactoring roadmap"
+Trigger ONLY when user explicitly mentions TongZJ:
+- ask TongZJ to review code/PR
+- ask TongZJ for advice on code quality
+- ask TongZJ to review/improve documentation
+- ask TongZJ for feedback on writing
+- let TongZJ check until no objections
+
+Do NOT trigger for general code review requests without mentioning TongZJ.
 
 ## Quick Usage
 
@@ -65,8 +69,6 @@ task(category="quick", load_skills=["reviewer-tongzj"], prompt="Academic Style: 
 Remove AI-generated code smells while preserving functionality. *Tradeoff: When in doubt, keep the code. Safety over aggressive removal.*
 
 ```
-Review [files] for AI artifacts:
-
 **1. Intent Over Action** — Comment what you mean, not what you do.
 - [ ] No obvious comments stating what code does
 - [ ] Intent comments explain "why" preserved
@@ -86,14 +88,12 @@ Review [files] for AI artifacts:
 - [ ] Unused imports/variables/functions removed
 - [ ] Functional code and clarity-adding code preserved
 
-Report format:
+Report:
 | Location | Issue | Severity | Effort | Target |
 |----------|-------|----------|--------|--------|
 
-### Summary Statistics
-- **AI Artifacts identified**: N items
-- **By principle**: Intent Over Action: N | Realistic Defense: N | Justified Abstractions: N | Clean Boilers: N
-- **Confidence assessment**: High/Medium/Low
+Score: [1-10]/10
+Summary: [Brief overview of key observations]
 ```
 
 ### Architecture Reviewer (CODE)
@@ -101,8 +101,6 @@ Report format:
 Analyze code maintainability from cognitive, change, and operational perspectives. *Tradeoff: Perfect architecture is the enemy of working code. Optimize for the team's actual needs.*
 
 ```
-Architecture Review (CODE) for [files]:
-
 **1. Local Reasoning** — Understand a function without reading 10 other files.
 - [ ] Functions/classes small and focused, with related logic colocated
 - [ ] Nesting depth limited; no fragmented knowledge across many small modules
@@ -127,12 +125,12 @@ Architecture Review (CODE) for [files]:
 - [ ] Defensive boundaries at edges
 - [ ] Testable interfaces at appropriate locality
 
-Report format:
+Report:
 | Location | Issue | Severity | Effort | Target |
 |----------|-------|----------|--------|--------|
 
-Maintainability Score: [1-10]/10
-Findings Summary: [Brief overview of key observations]
+Score: [1-10]/10
+Summary: [Brief overview of key observations]
 ```
 
 ### Code Comments Reviewer
@@ -140,8 +138,6 @@ Findings Summary: [Brief overview of key observations]
 Review inline code documentation for clarity and utility. *Tradeoff: Comments should explain intent, not restate code. When in doubt, prefer clearer code over more comments.*
 
 ```
-Code Comments Review for [files]:
-
 **1. Function/Method Signatures** — Types and docstrings.
 - [ ] Type hints on params and returns
 - [ ] Brief docstring (one line) explaining purpose
@@ -154,12 +150,12 @@ Code Comments Review for [files]:
 - [ ] Design decisions noted with reasoning
 - [ ] TODO/FIXME comments have issue references or context
 
-Report format:
+Report:
 | Location | Issue | Severity | Effort | Target |
 |----------|-------|----------|--------|--------|
 
-Code Comments Score: [1-10]/10
-Key Issues: [Brief list of blockers]
+Score: [1-10]/10
+Summary: [Brief overview of key observations]
 ```
 
 ### Wheel Reinvention Reviewer
@@ -167,8 +163,6 @@ Key Issues: [Brief list of blockers]
 Detect redundant code that duplicates existing functionality from third-party libraries or workspace utilities. *Tradeoff: Don't let "don't reinvent the wheel" become "add a dependency for every line of code". Balance reuse with simplicity.*
 
 ```
-Wheel Reinvention Review for [files]:
-
 **1. Library Duplication** — Check if code replicates third-party library functionality.
 - [ ] No manual implementations of common utilities (deep clone, debounce, throttle, etc.)
 - [ ] No custom regex patterns for standard formats (email, URL, date) when validation libraries exist
@@ -192,19 +186,12 @@ Wheel Reinvention Review for [files]:
 - [ ] Repeated patterns that could use shared base classes
 - [ ] Configuration/logic that duplicates existing defaults
 
-Report format:
+Report:
 | Location | Issue | Severity | Effort | Target |
 |----------|-------|----------|--------|--------|
 
-Duplication Score: [1-10]/10 (10 = perfect reuse, no reinvention)
-Findings Summary: [Brief overview of key observations]
-
-### Summary Statistics
-- **Library duplication issues**: N items
-- **Workspace duplication issues**: N items  
-- **Unnecessary dependencies**: N items
-- **Integration opportunities**: N items
-- **Confidence assessment**: High/Medium/Low
+Score: [1-10]/10
+Summary: [Brief overview of key observations]
 ```
 
 ---
@@ -216,8 +203,6 @@ Findings Summary: [Brief overview of key observations]
 Review project documentation for completeness and usability. *Tradeoff: Documentation should accelerate onboarding, not be a checklist. Prefer working examples over exhaustive descriptions.*
 
 ```
-Documentation Review for [project/docs]:
-
 **1. README Essentials** — Commands > prose.
 - [ ] One-line project description
 - [ ] Install/setup commands copy-paste ready
@@ -242,13 +227,12 @@ Documentation Review for [project/docs]:
 - [ ] Performance considerations
 - [ ] Security best practices
 
-Report format:
+Report:
 | Location | Issue | Severity | Effort | Target |
 |----------|-------|----------|--------|--------|
 
-Documentation Score: [1-10]/10
-Coverage Summary: [What's present vs missing]
-Key Gaps: [Critical documentation needs]
+Score: [1-10]/10
+Summary: [Brief overview of key observations]
 ```
 
 ### Clarity Reviewer
@@ -256,8 +240,6 @@ Key Gaps: [Critical documentation needs]
 Remove AI flavor and improve directness in writing. *Tradeoff: Directness can sacrifice nuance. Preserve important qualifications.*
 
 ```
-Review [document] for clarity:
-
 **1. Cut the Fluff** — Remove filler that adds no information.
 - [ ] No AI-flavored phrases (specifically, in summary, etc.)
 - [ ] No vague modifiers without substance (very, obviously)
@@ -278,9 +260,12 @@ Review [document] for clarity:
 - [ ] Content shows importance, not labels
 - [ ] Facts presented without telling reader what to think
 
-Report format:
+Report:
 | Location | Issue | Severity | Effort | Target |
 |----------|-------|----------|--------|--------|
+
+Score: [1-10]/10
+Summary: [Brief overview of key observations]
 ```
 
 ### Academic Style Reviewer
@@ -288,8 +273,6 @@ Report format:
 Follow academic writing conventions and domain standards. *Tradeoff: Rigid conventions can reduce readability. Balance formality with clarity.*
 
 ```
-Review [document] for academic style:
-
 **1. Consistent Conventions** — Follow the domain's established patterns.
 - [ ] Abbreviations defined on first use
 - [ ] Domain-standard citations (Fig./Tab.)
@@ -314,9 +297,12 @@ Review [document] for academic style:
 - [ ] Methods reproducible
 - [ ] Results distinct from interpretation
 
-Report format:
+Report:
 | Location | Issue | Severity | Effort | Target |
 |----------|-------|----------|--------|--------|
+
+Score: [1-10]/10
+Summary: [Brief overview of key observations]
 ```
 
 ---
