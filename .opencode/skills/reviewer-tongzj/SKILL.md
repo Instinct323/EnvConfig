@@ -1,6 +1,6 @@
 ---
 name: reviewer-tongzj
-description: Multi-agent review system with two agent groups - Code Review (AI Artifacts, Architecture, Code Comments) and Writing Review (Documentation, Clarity, Academic Style). Use whenever the user mentions code review, PR feedback, quality assessment, writing improvement, document review, or needs structured improvement targets. Triggers for phrases like "review this code", "check my PR", "improve this doc", "code quality", "improvement plan", "refactoring roadmap", "what needs improvement".
+description: Multi-agent review system with two agent groups - Code Review (AI Artifacts, Architecture, Code Comments, Wheel Reinvention) and Writing Review (Documentation, Clarity, Academic Style). Use whenever the user mentions code review, PR feedback, quality assessment, writing improvement, document review, or needs structured improvement targets. Triggers for phrases like "review this code", "check my PR", "improve this doc", "code quality", "improvement plan", "refactoring roadmap", "what needs improvement".
 license: MIT
 ---
 
@@ -21,11 +21,12 @@ Parallel multi-agent review system for code and writing quality assessment.
 
 ### For Code Review
 
-Run all 3 agents in Code Review group:
+Run all 4 agents in Code Review group:
 ```typescript
 task(category="quick", load_skills=["reviewer-tongzj"], prompt="AI Artifacts: [files]")
 task(category="deep", load_skills=["reviewer-tongzj"], prompt="Architecture (CODE): [files]")
 task(category="quick", load_skills=["reviewer-tongzj"], prompt="Code Comments: [files]")
+task(category="deep", load_skills=["reviewer-tongzj"], prompt="Wheel Reinvention: [files]")
 ```
 
 ### For Writing Review
@@ -161,6 +162,51 @@ Code Comments Score: [1-10]/10
 Key Issues: [Brief list of blockers]
 ```
 
+### Wheel Reinvention Reviewer
+
+Detect redundant code that duplicates existing functionality from third-party libraries or workspace utilities. *Tradeoff: Don't let "don't reinvent the wheel" become "add a dependency for every line of code". Balance reuse with simplicity.*
+
+```
+Wheel Reinvention Review for [files]:
+
+**1. Library Duplication** — Check if code replicates third-party library functionality.
+- [ ] No manual implementations of common utilities (deep clone, debounce, throttle, etc.)
+- [ ] No custom regex patterns for standard formats (email, URL, date) when validation libraries exist
+- [ ] No hand-rolled data structures when language/library equivalents suffice
+- [ ] No reimplementation of standard algorithms (sort, search, hash) without performance justification
+
+**2. Workspace Duplication** — Check if code duplicates existing internal utilities.
+- [ ] No duplicate helper functions across different modules
+- [ ] No redundant wrapper functions that just forward to existing utilities
+- [ ] Consistent use of shared utility modules (constants, formatters, validators)
+- [ ] No parallel implementations of the same feature in different files
+
+**3. Dependency Cost-Benefit** — Evaluate if adding a dependency is worth it.
+- [ ] No heavy libraries added for trivial functionality (< 20 lines)
+- [ ] No dependencies for one-liners that are clear when written inline
+- [ ] Consider dependency tree size, not just the direct package
+- [ ] Prefer standard library / built-in solutions when adequate
+
+**4. Integration Opportunities** — Identify code that should use existing abstractions.
+- [ ] Code that mirrors existing class/module interfaces
+- [ ] Repeated patterns that could use shared base classes
+- [ ] Configuration/logic that duplicates existing defaults
+
+Report format:
+| Location | Issue | Severity | Effort | Target |
+|----------|-------|----------|--------|--------|
+
+Duplication Score: [1-10]/10 (10 = perfect reuse, no reinvention)
+Findings Summary: [Brief overview of key observations]
+
+### Summary Statistics
+- **Library duplication issues**: N items
+- **Workspace duplication issues**: N items  
+- **Unnecessary dependencies**: N items
+- **Integration opportunities**: N items
+- **Confidence assessment**: High/Medium/Low
+```
+
 ---
 
 ## 2. Writing Review Agents
@@ -281,6 +327,7 @@ Report format:
 
 > **Versioning Policy**: Use minor versions (v1.1, v1.2...) for incremental updates. Only bump major version (v2.0) when explicitly requested by the author.
 
+- **v1.3**: Added Wheel Reinvention Reviewer to Code Review group — Detects code that duplicates third-party library functionality or workspace utilities, and flags unnecessary heavy dependencies for trivial functionality
 - **v1.2**: Split Documentation Reviewer into Code Comments Reviewer (Code Group) and Documentation Reviewer (Writing Group) — Code Comments focuses on inline code docs and docstrings; Documentation covers project-level docs (README, API docs, guides)
 - **v1.1**: Added Documentation Reviewer agent to Code Review group — Evaluates code documentation quality including inline comments, function docs, and API documentation completeness
 - **v1.0**: Initial release — Multi-agent review system with 4 specialized reviewers (AI Artifacts, Architecture, Clarity, Academic Style), inline taglines, merged desc/tradeoff format
