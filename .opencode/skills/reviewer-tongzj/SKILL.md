@@ -113,17 +113,18 @@ Analyze code maintainability from cognitive, change, and operational perspective
 - [ ] Framework isolated from business logic
 - [ ] Interfaces owned by consumers (DIP)
 
-**3. Single Point of Change** — One requirement change touches one place.
-- [ ] No duplicated code
-- [ ] Configuration externalized
-- [ ] Features encapsulated, not scattered
-- [ ] Extensible without modification
+**3. Justified Design** — Solve today's problem, not tomorrow's imaginary one.
+- [ ] No speculative abstractions or premature generalization (YAGNI)
+- [ ] No "flexibility" without a concrete, current use case
+- [ ] Law of Demeter: an object knows only its immediate collaborators
+- [ ] No deep object traversal chains (a.getB().getC().doD())
+- [ ] Internal details of other modules are not assumed or depended upon
 
-**4. Observable Failures** — Bugs reveal themselves quickly with context.
-- [ ] Fail fast with clear messages
-- [ ] Error context preserved
-- [ ] Defensive boundaries at edges
-- [ ] Testable interfaces at appropriate locality
+**4. Clean Separation** — Business intent decoupled from mechanics.
+- [ ] Generic algorithms extracted from business code (operate on primitive types)
+- [ ] Configuration externalized, not hardcoded
+- [ ] No duplicated logic; one requirement change touches one place
+- [ ] Features encapsulated in cohesive modules, not scattered
 
 Report:
 | Location | Issue | Severity | Effort | Target |
@@ -313,6 +314,7 @@ Summary: [Brief overview of key observations]
 
 > **Versioning Policy**: Use minor versions (v1.1, v1.2...) for incremental updates. Only bump major version (v2.0) when explicitly requested by the author.
 
+- **v1.4**: Rewrote Architecture Reviewer points 3 & 4 — Replaced "Single Point of Change" and "Observable Failures" with "Justified Design" (YAGNI, Law of Demeter) and "Clean Separation" (generic algorithms, externalized config)
 - **v1.3**: Added Wheel Reinvention Reviewer to Code Review group — Detects code that duplicates third-party library functionality or workspace utilities, and flags unnecessary heavy dependencies for trivial functionality
 - **v1.2**: Split Documentation Reviewer into Code Comments Reviewer (Code Group) and Documentation Reviewer (Writing Group) — Code Comments focuses on inline code docs and docstrings; Documentation covers project-level docs (README, API docs, guides)
 - **v1.1**: Added Documentation Reviewer agent to Code Review group — Evaluates code documentation quality including inline comments, function docs, and API documentation completeness
