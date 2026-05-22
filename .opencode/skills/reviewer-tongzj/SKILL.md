@@ -113,18 +113,17 @@ Analyze code maintainability from cognitive, change, and operational perspective
 - [ ] Framework isolated from business logic
 - [ ] Interfaces owned by consumers (DIP)
 
-**3. Justified Design** — Solve today's problem, not tomorrow's imaginary one.
-- [ ] No speculative abstractions or premature generalization (YAGNI)
-- [ ] No "flexibility" without a concrete, current use case
-- [ ] Law of Demeter: an object knows only its immediate collaborators
-- [ ] No deep object traversal chains (a.getB().getC().doD())
-- [ ] Internal details of other modules are not assumed or depended upon
+**3. Single Point of Change** — One requirement change touches one place.
+- [ ] No duplicated code
+- [ ] Configuration externalized
+- [ ] Features encapsulated, not scattered
+- [ ] Extensible without modification
 
-**4. Clean Separation** — Business intent decoupled from mechanics.
-- [ ] Generic algorithms extracted from business code (operate on primitive types)
-- [ ] Configuration externalized, not hardcoded
-- [ ] No duplicated logic; one requirement change touches one place
-- [ ] Features encapsulated in cohesive modules, not scattered
+**4. Observable Failures** — Bugs reveal themselves quickly with context.
+- [ ] Fail fast with clear messages
+- [ ] Error context preserved
+- [ ] Defensive boundaries at edges
+- [ ] Testable interfaces at appropriate locality
 
 Report:
 | Location | Issue | Severity | Effort | Target |
@@ -139,17 +138,27 @@ Summary: [Brief overview of key observations]
 Review inline code documentation for clarity and utility. *Tradeoff: Comments should explain intent, not restate code. When in doubt, prefer clearer code over more comments.*
 
 ```
-**1. Function/Method Signatures** — Types and docstrings.
-- [ ] Type hints on params and returns
-- [ ] Brief docstring (one line) explaining purpose
-- [ ] :param and :return for public APIs with non-obvious semantics
-- [ ] Exception types documented for functions that throw
+**1. Coverage** — Documentation is present where needed.
+- [ ] Public functions/classes have docstrings
+- [ ] Complex/non-obvious logic has inline comments
+- [ ] Exceptions are explained where they are raised (inline, not in docstring)
 
-**2. Inline Comments** — Explain intent, not mechanics.
-- [ ] No comments restating obvious code (e.g., `i++ // increment i`)
-- [ ] Complex logic explains the "why", not the "how"
-- [ ] Design decisions noted with reasoning
-- [ ] TODO/FIXME comments have issue references or context
+**2. Accuracy** — Documentation reflects actual code.
+- [ ] Parameter names in docstrings match signatures (if documented)
+- [ ] Return value descriptions match implementation
+- [ ] No stale documentation describing outdated behavior
+
+**3. Substance** — Documentation adds value beyond the code.
+- [ ] Explains intent ("why") not mechanics ("what")
+- [ ] Documents design decisions with reasoning
+- [ ] No restatement of obvious code operations
+- [ ] Clarifies non-obvious assumptions or edge cases
+
+**4. Economy** — Documentation is free of redundancy.
+- [ ] No tautological descriptions (e.g., `@param name The name`)
+- [ ] Skip `@param` for self-explanatory parameters (rely on type hints)
+- [ ] Simple functions: single-line docstrings; complex: multi-line
+- [ ] No section headers (Args/Returns) for trivial functions
 
 Report:
 | Location | Issue | Severity | Effort | Target |
@@ -157,6 +166,32 @@ Report:
 
 Score: [1-10]/10
 Summary: [Brief overview of key observations]
+
+---
+
+(The appendix should also be included in the report for reference)
+
+**Python docstring (Sphinx Style):**
+
+# Single-line: One space before and after triple quotes
+""" Brief description of what this does. """
+
+# Multi-line
+""" 
+Brief description.
+:param x: X coordinate.
+:return: Dictionary with metrics.
+"""
+
+**C++ docstring (Doxygen Style):**
+
+/**
+ * @brief Brief description of function purpose
+ * @param param1 Description of parameter
+ * @param param2 Description of parameter
+ * @return Description of return value
+ * @throws ExceptionType When this occurs
+ */
 ```
 
 ### Wheel Reinvention Reviewer
@@ -314,7 +349,7 @@ Summary: [Brief overview of key observations]
 
 > **Versioning Policy**: Use minor versions (v1.1, v1.2...) for incremental updates. Only bump major version (v2.0) when explicitly requested by the author.
 
-- **v1.4**: Rewrote Architecture Reviewer points 3 & 4 — Replaced "Single Point of Change" and "Observable Failures" with "Justified Design" (YAGNI, Law of Demeter) and "Clean Separation" (generic algorithms, externalized config)
+- **v1.4**: Added "Appropriate Verbosity" check to Code Comments Reviewer — Detects excessive, redundant, and overly detailed documentation that adds no value over self-documenting code
 - **v1.3**: Added Wheel Reinvention Reviewer to Code Review group — Detects code that duplicates third-party library functionality or workspace utilities, and flags unnecessary heavy dependencies for trivial functionality
 - **v1.2**: Split Documentation Reviewer into Code Comments Reviewer (Code Group) and Documentation Reviewer (Writing Group) — Code Comments focuses on inline code docs and docstrings; Documentation covers project-level docs (README, API docs, guides)
 - **v1.1**: Added Documentation Reviewer agent to Code Review group — Evaluates code documentation quality including inline comments, function docs, and API documentation completeness
