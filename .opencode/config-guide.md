@@ -6,34 +6,9 @@
 git clone https://github.com/Instinct323/EnvConfig.git
 ```
 
-### Format
-
-- This-doc: 标题使用英文，正文使用中文
-- Config：
-  - 已完成的配置项 (避免重复配置)
-  - 配置步骤 (便于向用户说明操作过程)
-  - 不同层级的配置文件之间的内容不应该出现重叠
-- File: 超链接表示的文件，一般位于该文档的根目录下；或者位于仓库中
-
-### Process
-
-每个配置文件的配置流程如下：
-
-1. 读取 Config：根据配置状态决定后续操作
-2. 状态判断：
-   - 已完成 → 询问用户是否需要重新配置
-   - 未完成 → 执行配置，完成后更新配置状态
-3. 清理：配置完成后清理临时文件
-
-你需要先确定每个配置项之间的依赖关系，以并行地、更快地配置
-
 ---
 
 ## Global
-
-Config: `~/.config/opencode/global-config.md`
-
-### skills
 
 运行以下命令安装：
 
@@ -42,9 +17,7 @@ chmod +x *.bash
 ./install-skills.bash
 ```
 
-### opencode
-
-将以下内容更新到 `~/.config/opencode/opencode.json`：
+将以下内容更新到 `~/.config/opencode/opencode.jsonc`：
 
 ```json
 {
@@ -64,11 +37,17 @@ chmod +x *.bash
 }
 ```
 
+引导用户执行以下命令，以配置 OMO:
+
+```bash
+npx oh-my-openagent install
+```
+
 ---
 
 ## Project
 
-Config: `AGENTS.md`
+更新工作区下的 `AGENTS.md`
 
 ### Preference
 
