@@ -22,6 +22,10 @@ rm -rf andrej-karpathy-skills
 # clawhub: https://clawhub.ai/
 cd $OC_CONFIG
 bun i -g clawhub
-bunx clawhub install --force github
-bunx clawhub install --force mineru-ai
-bunx clawhub install --force multi-search-engine
+clawhub install --force github
+clawhub install --force mineru-ai
+clawhub install --force multi-search-engine
+
+# other
+bun i -g @colbymchenry/codegraph
+codegraph install --yes

@@ -29,7 +29,7 @@ chmod +x *.bash
   },
   "plugin": [
     "cc-safety-net",
-    "oh-my-openagent",
+    "oh-my-openagent@latest",
     "@tarquinen/opencode-dcp@latest",
     "oc-chatgpt-multi-auth@latest",
     "opencode-antigravity-auth@latest"
@@ -47,7 +47,7 @@ bunx oh-my-openagent install
 
 ## Project
 
-更新工作区下的 `AGENTS.md`
+更新工作区下的 `AGENTS.md`，一定要包含以下内容：
 
 ### Preference
 
