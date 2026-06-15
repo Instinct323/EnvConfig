@@ -17,9 +17,8 @@ Programming:
   CUDA Toolkit: https://developer.nvidia.com/cuda-toolkit-archive   # --silent --toolkit --override --toolkitpath=<*/cuda-12.8>
   Docker: https://www.docker.com/
   Git: https://git-scm.com/
-  MikTeX: https://miktex.org/
+  # Sharelatex: https://blog.csdn.net/yitingren5764/article/details/121377630
   MiniConda: https://www.anaconda.com/docs/getting-started/miniconda/install
-  Strawberry Perl: https://strawberryperl.com/
   Visual Studio: https://visualstudio.microsoft.com/zh-hans/
 
 Photo:

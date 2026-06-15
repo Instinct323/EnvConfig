@@ -10,31 +10,29 @@ git clone https://github.com/Instinct323/EnvConfig.git
 
 ## Global
 
-运行以下命令安装：
-
-```bash
-chmod +x *.bash
-./install-skills.bash
-```
-
 将以下内容更新到 `~/.config/opencode/opencode.jsonc`：
 
 ```json
 {
   "autoupdate": true,
-  "compaction": {
-    "auto": true,
-    "prune": true,
-    "reserved": 10000
-  },
   "plugin": [
     "cc-safety-net",
-    "oh-my-openagent@latest",
-    "@tarquinen/opencode-dcp@latest",
     "oc-chatgpt-multi-auth@latest",
-    "opencode-antigravity-auth@latest"
-  ]
+    "opencode-antigravity-auth@latest",
+    "oh-my-openagent@latest"
+  ],
+  "compaction": {
+    "auto": true,
+    "reserved": 50000
+  }
 }
+```
+
+运行以下命令安装：
+
+```bash
+chmod +x *.bash
+./install-skills.bash ~/.config/opencode/
 ```
 
 引导用户执行以下命令，以配置 OMO:

@@ -2,24 +2,20 @@ import os
 from pathlib import Path
 
 USER = "Instinct323"
-URL_BASE = f"https://github.com/{USER}" if os.name == "nt" else f"git@github.com:{USER}"
+URL_BASE = f"https://github.com/{USER}"
 
 DIR_TREE = {
-    ".empty": ["Downloads", "Source"],
-
-    "Softwin": {
+    "Software": {
         ".empty": ["tmp", "AppData", "Tool", "Adobe", "Programming", "Tencent"],
     },
 
     "Information": {
-        ".empty": ["Data", "Document"],
         ".git": [f"{URL_BASE}/{USER} notes"],
     },
 
     "Workbench": {
         ".empty": ["3rd-party", "assets", "Lab"],
-        ".git": [f"{URL_BASE}/cppmod", f"{URL_BASE}/pymod",
-                 f"{URL_BASE}/EnvConfig", f"{URL_BASE}/ModelsAPI", f"{URL_BASE}/ROS-dev-space"],
+        ".git": [f"{URL_BASE}/pymod", f"{URL_BASE}/EnvConfig", f"{URL_BASE}/ModelsAPI"],
     },
 }
 

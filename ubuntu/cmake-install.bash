@@ -7,7 +7,7 @@ if ! [ $(id -u) -eq 0 ]; then
 fi
 
 # main
-cmake-build.bash $1
+cmake-build.bash "$1"
 
-cd $1/build
+cd "$1/build"
 make install
