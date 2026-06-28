@@ -8,8 +8,6 @@ git clone https://github.com/Instinct323/EnvConfig.git
 
 ---
 
-## Global
-
 将以下内容更新到 `~/.config/opencode/opencode.jsonc`：
 
 ```json
@@ -32,7 +30,7 @@ git clone https://github.com/Instinct323/EnvConfig.git
 
 ```bash
 chmod +x *.bash
-./install-skills.bash ~/.config/opencode/
+./init-opencode.bash
 ```
 
 引导用户执行以下命令，以配置 OMO:
@@ -40,14 +38,3 @@ chmod +x *.bash
 ```bash
 bunx oh-my-openagent install
 ```
-
----
-
-## Project
-
-更新工作区下的 `AGENTS.md`，一定要包含以下内容：
-
-### Preference
-
-- 始终使用中文回复，可穿插少量英文术语
-- 如果你在工作过程中产出了过程文件 (草稿，测试脚本，测试结果)，使用完成后删除

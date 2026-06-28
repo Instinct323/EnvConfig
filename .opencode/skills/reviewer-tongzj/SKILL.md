@@ -44,6 +44,26 @@ task(category="quick", load_skills=["reviewer-tongzj"], prompt="Academic Style: 
 
 **Rule**: Only select ONE group based on the task type. Don't mix code and writing agents unless explicitly requested.
 
+### Result Collection
+
+After all agents complete, write the consolidated review results to an issue document with sequentially numbered items:
+
+```markdown
+# Review Issues
+
+## AI Artifacts (Score: 7/10)
+
+|    | Location | Issue | Severity |
+|----|----------|-------|----------|
+| a1 | ...
+
+## Architecture (Score: 8/10)
+
+|    | Location | Issue | Severity |
+|----|----------|-------|----------|
+| b1 | ...
+```
+
 ---
 
 ## Agent Roles
@@ -52,7 +72,7 @@ task(category="quick", load_skills=["reviewer-tongzj"], prompt="Academic Style: 
 
 ### Design Principles
 - **Single focus**: One quality dimension per agent
-- **Structured output**: `| Location | Issue | Severity | Effort | Target |`
+- **Structured output**: `| Location | Issue | Severity |`
 - **Identify only**: Find problems, don't fix them
 - **Run in parallel**: Aggregate results downstream
 
@@ -70,18 +90,20 @@ Remove AI-generated code smells while preserving functionality. *Tradeoff: When 
 
 ```
 **1. Intent Over Action** — Comment what you mean, not what you do.
-- [ ] No obvious comments stating what code does
-- [ ] Intent comments explain "why" preserved
+- [ ] No obvious comments restating what code does
+- [ ] Intent comments explaining "why" preserved
 - [ ] Redundant comments removed
 
 **2. Realistic Defense** — Handle errors that can actually happen.
-- [ ] No over-defensive error handling for impossible cases
+- [ ] No over-defensive handling for impossible cases
 - [ ] Realistic edge case handling preserved
+- [ ] No silent defaults masking misconfiguration
 
 **3. Justified Abstractions** — Abstract only when it serves a purpose.
 - [ ] No speculative "flexibility" or "configurability"
 - [ ] No forwarding wrappers without purpose
 - [ ] Actual duplication-reducing abstractions kept
+- [ ] Short code and single-use private functions inlined
 
 **4. Clean Boilers** — Remove ceremony without function.
 - [ ] No purposeless boilerplate
@@ -89,8 +111,8 @@ Remove AI-generated code smells while preserving functionality. *Tradeoff: When 
 - [ ] Functional code and clarity-adding code preserved
 
 Report:
-| Location | Issue | Severity | Effort | Target |
-|----------|-------|----------|--------|--------|
+| Location | Issue | Severity |
+|----------|-------|----------|
 
 Score: [1-10]/10
 Summary: [Brief overview of key observations]
@@ -103,7 +125,7 @@ Analyze code maintainability from cognitive, change, and operational perspective
 ```
 **1. Local Reasoning** — Understand a function without reading 10 other files.
 - [ ] Functions/classes small and focused, with related logic colocated
-- [ ] Nesting depth limited; no fragmented knowledge across many small modules
+- [ ] Nesting depth limited; no fragmented knowledge across overly granular files/modules
 - [ ] No hidden side effects; prefer deep modules with simple interfaces
 - [ ] Data flow explicit through parameters
 
@@ -126,8 +148,8 @@ Analyze code maintainability from cognitive, change, and operational perspective
 - [ ] Testable interfaces at appropriate locality
 
 Report:
-| Location | Issue | Severity | Effort | Target |
-|----------|-------|----------|--------|--------|
+| Location | Issue | Severity |
+|----------|-------|----------|
 
 Score: [1-10]/10
 Summary: [Brief overview of key observations]
@@ -161,8 +183,8 @@ Review inline code documentation for clarity and utility. *Tradeoff: Comments sh
 - [ ] No section headers (Args/Returns) for trivial functions
 
 Report:
-| Location | Issue | Severity | Effort | Target |
-|----------|-------|----------|--------|--------|
+| Location | Issue | Severity |
+|----------|-------|----------|
 
 Score: [1-10]/10
 Summary: [Brief overview of key observations]
@@ -223,8 +245,8 @@ Detect redundant code that duplicates existing functionality from third-party li
 - [ ] Configuration/logic that duplicates existing defaults
 
 Report:
-| Location | Issue | Severity | Effort | Target |
-|----------|-------|----------|--------|--------|
+| Location | Issue | Severity |
+|----------|-------|----------|
 
 Score: [1-10]/10
 Summary: [Brief overview of key observations]
@@ -264,8 +286,8 @@ Review project documentation for completeness and usability. *Tradeoff: Document
 - [ ] Security best practices
 
 Report:
-| Location | Issue | Severity | Effort | Target |
-|----------|-------|----------|--------|--------|
+| Location | Issue | Severity |
+|----------|-------|----------|
 
 Score: [1-10]/10
 Summary: [Brief overview of key observations]
@@ -297,8 +319,8 @@ Remove AI flavor and improve directness in writing. *Tradeoff: Directness can sa
 - [ ] Facts presented without telling reader what to think
 
 Report:
-| Location | Issue | Severity | Effort | Target |
-|----------|-------|----------|--------|--------|
+| Location | Issue | Severity |
+|----------|-------|----------|
 
 Score: [1-10]/10
 Summary: [Brief overview of key observations]
@@ -334,8 +356,8 @@ Follow academic writing conventions and domain standards. *Tradeoff: Rigid conve
 - [ ] Results distinct from interpretation
 
 Report:
-| Location | Issue | Severity | Effort | Target |
-|----------|-------|----------|--------|--------|
+| Location | Issue | Severity |
+|----------|-------|----------|
 
 Score: [1-10]/10
 Summary: [Brief overview of key observations]
@@ -349,6 +371,7 @@ Summary: [Brief overview of key observations]
 
 > **Versioning Policy**: Use minor versions (v1.1, v1.2...) for incremental updates. Only bump major version (v2.0) when explicitly requested by the author.
 
+- **v1.5**: Refined Architecture Reviewer (Local Reasoning) check 2 — Expanded "no fragmented knowledge" to explicitly cover overly granular file splitting alongside module fragmentation
 - **v1.4**: Added "Appropriate Verbosity" check to Code Comments Reviewer — Detects excessive, redundant, and overly detailed documentation that adds no value over self-documenting code
 - **v1.3**: Added Wheel Reinvention Reviewer to Code Review group — Detects code that duplicates third-party library functionality or workspace utilities, and flags unnecessary heavy dependencies for trivial functionality
 - **v1.2**: Split Documentation Reviewer into Code Comments Reviewer (Code Group) and Documentation Reviewer (Writing Group) — Code Comments focuses on inline code docs and docstrings; Documentation covers project-level docs (README, API docs, guides)
