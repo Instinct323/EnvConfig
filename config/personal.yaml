@@ -1,9 +1,14 @@
 speech_rate: 240    # characters per minute
 
+
 body:
+  bust_size: 98     # cm
   cloth_len: 68     # cm
+  shoulder_width: 42      # cm
+
   pants_len: 100    # cm
   shoe_size: 40     # EU size
+
 
 update_date:
   zotero: 2025-11-03
