@@ -1,11 +1,13 @@
+from __future__ import annotations
+
 import argparse
 from pathlib import Path
 from typing import Iterator
 
+import PyPDF2
+
 
 def merge_pdf(src: Iterator[Path], dst: Path):
-    import PyPDF2
-
     merger = PyPDF2.PdfMerger()
     for f in src:
         try:

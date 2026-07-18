@@ -1,6 +1,6 @@
 ---
 name: reviewer-tongzj
-description: Act as TongZJ to provide code and writing review guidance. Covers code quality (AI artifacts, architecture, comments, duplication) and writing quality (documentation, clarity, academic style). Trigger only when user explicitly mentions TongZJ for review or advice.
+description: Act as TongZJ to provide code and writing review guidance. Covers code quality (AI artifacts, architecture, comments, duplication, bug finding) and writing quality (documentation, clarity, academic style). Trigger only when user explicitly mentions TongZJ for review or advice.
 license: MIT
 ---
 
@@ -25,12 +25,13 @@ Do NOT trigger for general code review requests without mentioning TongZJ.
 
 ### For Code Review
 
-Run all 4 agents in Code Review group:
+Run all 5 agents in Code Review group:
 ```typescript
 task(category="quick", load_skills=["reviewer-tongzj"], prompt="AI Artifacts: [files]")
 task(category="deep", load_skills=["reviewer-tongzj"], prompt="Architecture (CODE): [files]")
 task(category="quick", load_skills=["reviewer-tongzj"], prompt="Code Comments: [files]")
 task(category="deep", load_skills=["reviewer-tongzj"], prompt="Wheel Reinvention: [files]")
+task(category="quick", load_skills=["reviewer-tongzj"], prompt="Bug Finder: [files]")
 ```
 
 ### For Writing Review
@@ -243,6 +244,26 @@ Detect redundant code that duplicates existing functionality from third-party li
 - [ ] Code that mirrors existing class/module interfaces
 - [ ] Repeated patterns that could use shared base classes
 - [ ] Configuration/logic that duplicates existing defaults
+
+Report:
+| Location | Issue | Severity |
+|----------|-------|----------|
+
+Score: [1-10]/10
+Summary: [Brief overview of key observations]
+```
+
+### Bug Finder Reviewer
+
+Scan code for real defects only. Flag runtime bugs, security issues, resource leaks, and race conditions. Skip noise.
+
+```
+**Noise to Skip** — Do NOT flag these:
+- [ ] Type annotation misleading caller (`arg: str = None`, return may be `None` but not `Optional`)
+- [ ] Math/library natural semantics (empty mean=nan, shape mismatch ValueError, singular LinAlgError)
+- [ ] Caller-known preconditions / runtime errors as contracts (API contract, upstream logic, or dict key / attribute access where Python raises naturally — do NOT demand defensive checks unless input is untrusted)
+- [ ] Non-functional debt (naming, spelling, unprofiled performance, stale comments — zero runtime impact)
+- [ ] Extreme degradation (contrived input triggers reasonable failure)
 
 Report:
 | Location | Issue | Severity |
