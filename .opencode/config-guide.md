@@ -15,8 +15,6 @@ git clone https://github.com/Instinct323/EnvConfig.git
   "autoupdate": true,
   "plugin": [
     "cc-safety-net",
-    "oc-chatgpt-multi-auth@latest",
-    "opencode-antigravity-auth@latest",
     "oh-my-openagent@latest"
   ],
   "compaction": {
