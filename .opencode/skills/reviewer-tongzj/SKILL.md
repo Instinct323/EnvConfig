@@ -26,6 +26,7 @@ Do NOT trigger for general code review requests without mentioning TongZJ.
 ### For Code Review
 
 Run all 5 agents in Code Review group:
+
 ```typescript
 task(category="quick", load_skills=["reviewer-tongzj"], prompt="AI Artifacts: [files]")
 task(category="deep", load_skills=["reviewer-tongzj"], prompt="Architecture (CODE): [files]")
@@ -37,6 +38,7 @@ task(category="quick", load_skills=["reviewer-tongzj"], prompt="Bug Finder: [fil
 ### For Writing Review
 
 Run all 3 agents in Writing Review group:
+
 ```typescript
 task(category="quick", load_skills=["reviewer-tongzj"], prompt="Documentation: [files]")
 task(category="quick", load_skills=["reviewer-tongzj"], prompt="Clarity: [document]")
@@ -49,6 +51,10 @@ task(category="quick", load_skills=["reviewer-tongzj"], prompt="Academic Style: 
 
 After all agents complete, write the consolidated review results to an issue document with sequentially numbered items:
 
+- Sort by severity: Within each section, order issues as `high → medium → low`. This puts the most actionable problems at the top.
+- Keep tables aligned: Use the same column widths across all sections so the report is easy to scan.
+- One issue per row: Do not merge multiple observations into a single cell.
+
 ```markdown
 # Review Issues
 
@@ -56,14 +62,26 @@ After all agents complete, write the consolidated review results to an issue doc
 
 |    | Location | Issue | Severity |
 |----|----------|-------|----------|
-| a1 | ...
+| a1 | ...      | ...   | high     |
+| a2 | ...      | ...   | medium   |
+| a3 | ...      | ...   | low      |
 
 ## Architecture (Score: 8/10)
 
 |    | Location | Issue | Severity |
 |----|----------|-------|----------|
-| b1 | ...
+| b1 | ...      | ...   | high     |
+| b2 | ...      | ...   | medium   |
+| b3 | ...      | ...   | low      |
 ```
+
+**Final filtering step**: After the consolidated report is written, delegate one additional agent to remove any issue that fails all three tests:
+
+- Real — the problem actually exists in the code or document.
+- Unique — it is not a duplicate of another reported issue.
+- Improvable — there is a simpler or more elegant fix than the current state.
+
+Keep only concrete, verifiable issues worth fixing.
 
 ---
 
@@ -72,14 +90,16 @@ After all agents complete, write the consolidated review results to an issue doc
 **Review agents = diagnostic tools that output structured improvement targets.**
 
 ### Design Principles
-- **Single focus**: One quality dimension per agent
-- **Structured output**: `| Location | Issue | Severity |`
-- **Identify only**: Find problems, don't fix them
-- **Run in parallel**: Aggregate results downstream
+
+- Single focus: One quality dimension per agent
+- Structured output: `| Location | Issue | Severity |`
+- Identify only: Find problems, don't fix them
+- Run in parallel: Aggregate results downstream
 
 ### Usage
-- **Single agent** → Focused assessment
-- **All agents** → Comprehensive review for planning
+
+- Single agent → Focused assessment
+- All agents → Comprehensive review for planning
 
 ---
 
