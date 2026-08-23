@@ -16,8 +16,8 @@ ubuntu/clone-bin.bash
 ```
 
 - `~/.bashrc`
-  - ADD: export LANG=en_US
-  - ADD: export LANGUAGE=en_US
+  - ADD: alias occsta="ncdu / --exclude /mnt"
+  - ADD (wsl): export LIBGL_ALWAYS_SOFTWARE=1
 
 - `/etc/apt/sources.list`
   - [https://developer.aliyun.com/mirror/ubuntu](https://developer.aliyun.com/mirror/ubuntu)
