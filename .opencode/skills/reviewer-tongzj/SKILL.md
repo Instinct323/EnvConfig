@@ -28,11 +28,11 @@ Do NOT trigger for general code review requests without mentioning TongZJ.
 Run all 5 agents in Code Review group:
 
 ```typescript
-task(category="quick", load_skills=["reviewer-tongzj"], prompt="AI Artifacts: [files]")
-task(category="deep", load_skills=["reviewer-tongzj"], prompt="Architecture (CODE): [files]")
-task(category="quick", load_skills=["reviewer-tongzj"], prompt="Code Comments: [files]")
-task(category="deep", load_skills=["reviewer-tongzj"], prompt="Wheel Reinvention: [files]")
-task(category="quick", load_skills=["reviewer-tongzj"], prompt="Bug Finder: [files]")
+task(category="unspecified-high", load_skills=["reviewer-tongzj"], description="Review AI artifacts", prompt="AI Artifacts: [files]", run_in_background=true)
+task(category="ultrabrain", load_skills=["reviewer-tongzj"], description="Review code architecture", prompt="Architecture (CODE): [files]", run_in_background=true)
+task(category="writing", load_skills=["reviewer-tongzj"], description="Review code comments", prompt="Code Comments: [files]", run_in_background=true)
+task(category="deep", load_skills=["reviewer-tongzj"], description="Find reinvented wheels", prompt="Wheel Reinvention: [files]", run_in_background=true)
+task(category="ultrabrain", load_skills=["reviewer-tongzj"], description="Find real bugs", prompt="Bug Finder: [files]", run_in_background=true)
 ```
 
 ### For Writing Review
@@ -40,9 +40,9 @@ task(category="quick", load_skills=["reviewer-tongzj"], prompt="Bug Finder: [fil
 Run all 3 agents in Writing Review group:
 
 ```typescript
-task(category="quick", load_skills=["reviewer-tongzj"], prompt="Documentation: [files]")
-task(category="quick", load_skills=["reviewer-tongzj"], prompt="Clarity: [document]")
-task(category="quick", load_skills=["reviewer-tongzj"], prompt="Academic Style: [document]")
+task(category="writing", load_skills=["reviewer-tongzj"], description="Review project documentation", prompt="Documentation: [files]", run_in_background=true)
+task(category="writing", load_skills=["reviewer-tongzj"], description="Review writing clarity", prompt="Clarity: [document]", run_in_background=true)
+task(category="writing", load_skills=["reviewer-tongzj"], description="Review academic style", prompt="Academic Style: [document]", run_in_background=true)
 ```
 
 **Rule**: Only select ONE group based on the task type. Don't mix code and writing agents unless explicitly requested.
@@ -75,11 +75,17 @@ After all agents complete, write the consolidated review results to an issue doc
 | b3 | ...      | ...   | low      |
 ```
 
-**Final filtering step**: After the consolidated report is written, delegate one additional agent to remove any issue that fails all three tests:
+**Final filtering step**: After writing the consolidated report, delegate one additional agent:
 
-- Real — the problem actually exists in the code or document.
-- Unique — it is not a duplicate of another reported issue.
-- Improvable — there is a simpler or more elegant fix than the current state.
+```typescript
+task(category="unspecified-high", load_skills=["reviewer-tongzj"], description="Filter review findings", prompt="Final Filter: [consolidated report] [reviewed sources]", run_in_background=false)
+```
+
+Filter in this order:
+
+1. **Validate** — Keep only issues that are **Real** (demonstrably exist), **Unique** (do not share another item's root cause), and **Improvable** (have a clearly better fix).
+2. **Apply accepted tradeoffs** — Remove natural Python exceptions used as fail-fast contracts unless they hide failure, cross a trust boundary, or risk corrupting state; omitted optional annotations that only describe failure paths; and tiny stable duplication that avoids cross-file coupling.
+3. **Normalize** — Re-sort by severity and renumber items sequentially.
 
 Keep only concrete, verifiable issues worth fixing.
 
@@ -279,7 +285,6 @@ Scan code for real defects only. Flag runtime bugs, security issues, resource le
 
 ```
 **Noise to Skip** — Do NOT flag these:
-- [ ] Type annotation misleading caller (`arg: str = None`, return may be `None` but not `Optional`)
 - [ ] Math/library natural semantics (empty mean=nan, shape mismatch ValueError, singular LinAlgError)
 - [ ] Caller-known preconditions / runtime errors as contracts (API contract, upstream logic, or dict key / attribute access where Python raises naturally — do NOT demand defensive checks unless input is untrusted)
 - [ ] Non-functional debt (naming, spelling, unprofiled performance, stale comments — zero runtime impact)
@@ -412,6 +417,8 @@ Summary: [Brief overview of key observations]
 
 > **Versioning Policy**: Use minor versions (v1.1, v1.2...) for incremental updates. Only bump major version (v2.0) when explicitly requested by the author.
 
+- **v1.7**: Aligned reviewer task categories with their dominant work — writing for prose, ultrabrain for architecture and bug reasoning, deep for cross-source reuse research, and unspecified-high for broad review and final synthesis
+- **v1.6**: Added review exceptions for Python fail-fast contracts, minimal annotations, and tiny duplication that avoids cross-file coupling
 - **v1.5**: Refined Architecture Reviewer (Local Reasoning) check 2 — Expanded "no fragmented knowledge" to explicitly cover overly granular file splitting alongside module fragmentation
 - **v1.4**: Added "Appropriate Verbosity" check to Code Comments Reviewer — Detects excessive, redundant, and overly detailed documentation that adds no value over self-documenting code
 - **v1.3**: Added Wheel Reinvention Reviewer to Code Review group — Detects code that duplicates third-party library functionality or workspace utilities, and flags unnecessary heavy dependencies for trivial functionality
