@@ -2,7 +2,7 @@
 set -euo pipefail
 
 SRC="$(cd "$(dirname "$0")" && pwd)"
-DST="~/.config/opencode"
+DST=~/.config/opencode
 
 "${SRC}/install-skills.bash" "$DST"
 

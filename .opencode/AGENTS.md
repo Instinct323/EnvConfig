@@ -17,3 +17,14 @@
 - Markdown：使用 2 空格缩进，长文本不自动硬换行
 - Shell：运行 ShellCheck，按 error 修复，忽略 `SC2086`、`SC2164`
 - Python：遵循 PEP 8，忽略 `E701`、`E722`、`E731`；修复 unresolved reference，忽略 `optimizer`；将 `object`、`type` 字符串化时提供 `__str__`、`__repr__` 或 `__format__`；保留 stub package 提示，忽略 `pandas`、`scipy`
+
+<!-- CODEGRAPH_START -->
+## CodeGraph
+
+In repositories indexed by CodeGraph (a `.codegraph/` directory exists at the repo root), reach for it BEFORE grep/find or reading files when you need to understand or locate code:
+
+- **MCP tool** (when available): `codegraph_explore` answers most code questions in one call — the relevant symbols' verbatim source plus the call paths between them, including dynamic-dispatch hops grep can't follow. Name a file or symbol in the query to read its current line-numbered source. If it's listed but deferred, load it by name via tool search.
+- **Shell** (always works): `codegraph explore "<symbol names or question>"` prints the same output.
+
+If there is no `.codegraph/` directory, skip CodeGraph entirely — indexing is the user's decision.
+<!-- CODEGRAPH_END -->
