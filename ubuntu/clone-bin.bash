@@ -7,7 +7,7 @@ git clone https://github.com/Instinct323/EnvConfig.git $TMP
 
 # Copy specific scripts
 cp $TMP/ubuntu/* $TMP
-cp $TMP/ubuntu-$(lsb_release -cs)/* $TMP
+cp $TMP/ubuntu/$(lsb_release -cs)/* $TMP
 
 # Copy all scripts
 cp $TMP/*.bashrc ~

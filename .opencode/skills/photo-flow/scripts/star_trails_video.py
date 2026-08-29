@@ -4,9 +4,8 @@ import argparse
 from pathlib import Path
 from typing import Callable, Iterable
 
-from tqdm import tqdm
-
 import numpy as np
+from tqdm import tqdm
 
 
 def star_trails_video(src: Iterable[np.ndarray],

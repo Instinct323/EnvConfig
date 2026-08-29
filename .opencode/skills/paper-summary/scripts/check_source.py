@@ -1,4 +1,5 @@
 import argparse
+
 from registry import Registry
 
 if __name__ == '__main__':
