@@ -43,9 +43,7 @@ ubuntu/clone-bin.bash
 
 - `ln -s {src} {dst}`
   - ~/.cache
-  - ~/Downloads
   - ~/miniconda3
-  - ~/Zotero
 
 # Windows
 
