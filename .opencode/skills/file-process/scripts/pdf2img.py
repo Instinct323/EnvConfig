@@ -7,15 +7,15 @@ from tqdm import tqdm
 
 
 def pdf2img(file: Path, suffix=".png", root="Project", blowup=15):
-    import fitz
+    import pymupdf
 
     root = file.parent / root
     if not root.is_dir():
         root.mkdir()
 
-    pdf = fitz.open(file)
+    pdf = pymupdf.open(file)
     for i, page in tqdm(list(enumerate(pdf)), desc="pdf to image"):
-        pix = page.get_pixmap(matrix=fitz.Matrix(blowup, blowup))
+        pix = page.get_pixmap(matrix=pymupdf.Matrix(blowup, blowup))
         pix.save(root / (file.stem + f"-{i + 1}{suffix}"))
     pdf.close()
 

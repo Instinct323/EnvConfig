@@ -7,7 +7,8 @@
 
 - 如果你在工作过程中产出了过程文件 (草稿，测试脚本，测试结果)，使用完成后删除
 - 使用 mineru 时应当优先使用有 token 模式
-- 不可使用 git 命令改变仓库的工作区状态
+- 不可使用 git 命令改变仓库的工作区状态（`git stash`、`git stash pop`、`git checkout -- <path>`、`git reset --hard`、`git restore`、`git clean` 等）
+- 应主动对命令输出做 `grep` 以筛选最短的有效信息
 
 # 代码
 
@@ -16,7 +17,16 @@
 - JSON：tab 宽度为 2；对象、数组超过行宽时按需换行
 - Markdown：使用 2 空格缩进，长文本不自动硬换行
 - Shell：运行 ShellCheck，按 error 修复，忽略 `SC2086`、`SC2164`
-- Python：遵循 PEP 8，忽略 `E701`、`E722`、`E731`；修复 unresolved reference，忽略 `optimizer`；将 `object`、`type` 字符串化时提供 `__str__`、`__repr__` 或 `__format__`；保留 stub package 提示，忽略 `pandas`、`scipy`
+- Python：
+  - 忽略 `E701`、`E722`、`E731`
+  - 修复 unresolved reference，忽略 `optimizer`
+  - 将 `object`、`type` 字符串化时提供 `__str__`、`__repr__` 或 `__format__`
+  - 保留 stub package 提示，忽略 `pandas`、`scipy`
+  - 使用 `<arg>: <type> = None` 代替 `<arg>: <type> | None = None`，省略 `-> None`
+  - 不使用 `if TYPE_CHECKING` 分支
+  - 简短条件分支若仅含一条简单语句，保持 `if condition: statement` 单行形式
+  - 可选依赖使用 `try-except` 导入，导入失败时赋值为 `None`
+  - 可选依赖相关类型使用字符串前向引用；不为消除静态检查错误额外引入 `Protocol`，不在运行时改写 `__annotations__`
 
 <!-- CODEGRAPH_START -->
 ## CodeGraph
