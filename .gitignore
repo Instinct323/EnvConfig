@@ -1,7 +1,9 @@
 # Agents
 .codegraph
+.debug-journal.md
 .omo
 .sisyphus
+.workbuddy
 
 # Byte-compiled
 __*cache__
