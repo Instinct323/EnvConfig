@@ -40,14 +40,18 @@ def fsize_lim_save(img: np.ndarray, file: Path, fsize: int = 2 ** 20, eps: float
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Save image with file size limit")
-    parser.add_argument("--src", type=Path, required=True, help="Input image file path")
-    parser.add_argument("--dst", type=Path, required=True, help="Output image file path")
-    parser.add_argument("--fsize", type=int, default=2 ** 20, help="Target file size in bytes (default: 1048576)")
-    parser.add_argument("--eps", type=float, default=1e-3, help="Tolerance epsilon (default: 1e-3)")
-    parser.add_argument("--max-iter", type=int, default=100, help="Maximum iterations (default: 100)")
+    parser.add_argument("-i", "--input", type=Path, required=True, help="Input image file path")
+    parser.add_argument("-o", "--output", type=Path, required=True, help="Output image file path")
+    parser.add_argument("--limit", type=int, default=2 ** 20,
+                        help="Maximum output size in bytes (default: 1048576)")
+    parser.add_argument("--tol", type=float, default=1e-3,
+                        help="Size tolerance ratio (default: 1e-3)")
+    parser.add_argument("--iterations", type=int, default=100,
+                        help="Maximum resize iterations (default: 100)")
     args = parser.parse_args()
 
-    img = cv2.imread(str(args.src))
+    img = cv2.imread(str(args.input))
     if img is None:
-        raise RuntimeError(f"Failed to load image: {args.src}")
-    fsize_lim_save(file=args.dst, img=img, fsize=args.fsize, eps=args.eps, max_iter=args.max_iter)
+        raise RuntimeError(f"Failed to load image: {args.input}")
+    fsize_lim_save(file=args.output, img=img, fsize=args.limit, eps=args.tol,
+                   max_iter=args.iterations)

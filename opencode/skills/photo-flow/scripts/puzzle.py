@@ -27,6 +27,7 @@ class Puzzle:
     def __init__(self,
                  img: Path,
                  material: Path,
+                 output: str,
                  shape: tuple = (2, 3),
                  dpi: int = 1280,
                  pad_width: float = 0.05,
@@ -37,7 +38,7 @@ class Puzzle:
                               value=[pad_value] * 3 if isinstance(pad_value, int) else pad_value)
         self.pad_size = np.round(np.array([pad_width, pad_width / 2]) / 2 * self.stride).astype(np.int32)
         self.material = self.parse_material(material)
-        self.puzzle()
+        self.puzzle(output)
 
     def imread(self, file, warn_only=True):
         img = cv2.imread(str(file))
@@ -83,7 +84,7 @@ class Puzzle:
                 LOGGER.info(f"The material package {i + 1} is loaded")
         return material
 
-    def puzzle(self):
+    def puzzle(self, output: str):
         concat = lambda x: np.concatenate(x, axis=0) if x else np.array([])
         pad_vert = lambda x, bottom, top: (
             cv2.copyMakeBorder(x, bottom=bottom, top=top, left=0, right=0, **self.pad_kwarg)) \
@@ -106,8 +107,10 @@ class Puzzle:
                 cell = pad_vert(cell, bottom=self.pad_size[1] * 4, top=self.pad_size[1] * 4)
                 img_queue.insert(1, cell)
                 cell = np.concatenate(img_queue)
-            cv2.imwrite(f"{i + 1}_puzzle.png", cell)
-            LOGGER.info(f"The part {i + 1} has been saved as {i + 1}_puzzle.png")
+            output_path = Path(output.format(page=i + 1))
+            output_path.parent.mkdir(parents=True, exist_ok=True)
+            cv2.imwrite(str(output_path), cell)
+            LOGGER.info(f"The part {i + 1} has been saved as {output_path}")
         LOGGER.info(f"The generated image has been saved in {Path.cwd()}")
 
 
@@ -125,15 +128,17 @@ def _parse_pad_value(value: str):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Create puzzle effect from image and materials")
-    parser.add_argument("--img", type=Path, required=True, help="Foreground image file path")
+    parser.add_argument("-i", "--input", type=Path, required=True, help="Foreground image file path")
     parser.add_argument("--material", type=Path, required=True, help="Material package directory path")
+    parser.add_argument("-o", "--output", type=str, required=True,
+                        help="Output filename template, e.g. 'folder/{page}.png'")
     parser.add_argument("--shape", type=str, default="2,3", help="Grid shape as 'W,H' (default: 2,3)")
-    parser.add_argument("--dpi", type=int, default=1280, help="Output image width (default: 1280)")
-    parser.add_argument("--pad-width", type=float, default=0.05, help="Side padding ratio (default: 0.05)")
-    parser.add_argument("--pad-value", type=str, default="255", help="Padding value (int or 'R,G,B')")
+    parser.add_argument("--cell-size", type=int, default=1280, help="Cell width in pixels (default: 1280)")
+    parser.add_argument("--padding", type=float, default=0.05, help="Side padding ratio (default: 0.05)")
+    parser.add_argument("--pad-color", type=str, default="255", help="Padding color (int or 'R,G,B')")
     args = parser.parse_args()
 
     shape = _parse_shape(args.shape)
-    pad_value = _parse_pad_value(args.pad_value)
-    Puzzle(img=args.img, material=args.material, shape=shape, dpi=args.dpi,
-           pad_width=args.pad_width, pad_value=pad_value)
+    pad_value = _parse_pad_value(args.pad_color)
+    Puzzle(img=args.input, material=args.material, output=args.output, shape=shape, dpi=args.cell_size,
+           pad_width=args.padding, pad_value=pad_value)

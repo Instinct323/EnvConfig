@@ -19,8 +19,8 @@ def merge_pdf(src: Iterator[Path], dst: Path):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Merge multiple PDF files into one")
-    parser.add_argument("--src", type=Path, nargs="+", required=True, help="Source PDF file paths")
-    parser.add_argument("--dst", type=Path, required=True, help="Destination PDF file path")
+    parser.add_argument("-i", "--input", type=Path, nargs="+", required=True, help="Source PDF file paths")
+    parser.add_argument("-o", "--output", type=Path, required=True, help="Destination PDF file path")
     args = parser.parse_args()
 
-    merge_pdf(src=iter(args.src), dst=args.dst)
+    merge_pdf(src=iter(args.input), dst=args.output)

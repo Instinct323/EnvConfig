@@ -54,10 +54,11 @@ class FileArchiver:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="File archiving manager")
-    parser.add_argument("--txt-cfg", type=Path, required=True, help="Configuration file path")
-    parser.add_argument("--dst", type=Path, required=True, help="Destination directory path")
-    parser.add_argument("--file-fmt", type=str, default="%i-%n", help="File name format (default: %i-%n)")
+    parser.add_argument("-i", "--input", type=Path, required=True, help="Configuration file path")
+    parser.add_argument("-o", "--output", type=Path, required=True, help="Destination directory path")
+    parser.add_argument("--format", type=str, default="%i-%n",
+                        help="File name format (default: %%i-%%n)")
     parser.add_argument("--reverse", action="store_true", help="Reverse file order")
     args = parser.parse_args()
 
-    FileArchiver(txt_cfg=args.txt_cfg, dst=args.dst, file_fmt=args.file_fmt, reverse=args.reverse)
+    FileArchiver(txt_cfg=args.input, dst=args.output, file_fmt=args.format, reverse=args.reverse)

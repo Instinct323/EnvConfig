@@ -60,16 +60,16 @@ def _parse_img_size(value: str):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate image with blurred border")
-    parser.add_argument("--src", type=Path, required=True, help="Source image file path")
-    parser.add_argument("--img-size", type=str, default=None, help="Target image size (int or 'W,H')")
+    parser.add_argument("-i", "--input", type=Path, required=True, help="Source image file path")
+    parser.add_argument("-o", "--output", type=Path, required=True, help="Output image file path")
+    parser.add_argument("--size", type=str, default=None, help="Target image size (int or 'W,H')")
     parser.add_argument("--aspect-ratio", type=float, default=None, help="Target aspect ratio")
     args = parser.parse_args()
 
-    src = cv2.imread(str(args.src))
+    src = cv2.imread(str(args.input))
     if src is None:
-        raise RuntimeError(f"Failed to load image: {args.src}")
-    img_size = _parse_img_size(args.img_size) if args.img_size else None
+        raise RuntimeError(f"Failed to load image: {args.input}")
+    img_size = _parse_img_size(args.size) if args.size else None
     result = make_blurred_border(src=src, img_size=img_size, aspect_ratio=args.aspect_ratio)
-    output_path = args.src.parent / f"{args.src.stem}_bordered.png"
-    cv2.imwrite(str(output_path), result)
-    print(f"Saved: {output_path}")
+    cv2.imwrite(str(args.output), result)
+    print(f"Saved: {args.output}")

@@ -6,26 +6,25 @@ from pathlib import Path
 from tqdm import tqdm
 
 
-def pdf2img(file: Path, suffix=".png", root="Project", blowup=15):
+def pdf2img(input_file: Path, output: str, blowup=15):
     import pymupdf
 
-    root = file.parent / root
-    if not root.is_dir():
-        root.mkdir()
-
-    pdf = pymupdf.open(file)
+    pdf = pymupdf.open(input_file)
     for i, page in tqdm(list(enumerate(pdf)), desc="pdf to image"):
         pix = page.get_pixmap(matrix=pymupdf.Matrix(blowup, blowup))
-        pix.save(root / (file.stem + f"-{i + 1}{suffix}"))
+        output_path = Path(output.format(page=i + 1))
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        pix.save(output_path)
     pdf.close()
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Convert PDF pages to images")
-    parser.add_argument("--file", type=Path, required=True, help="Path to the PDF file")
-    parser.add_argument("--suffix", type=str, default=".png", help="Image file suffix (default: .png)")
-    parser.add_argument("--root", type=str, default="Project", help="Output directory name (default: Project)")
-    parser.add_argument("--blowup", type=int, default=15, help="Image resolution blowup factor (default: 15)")
+    parser.add_argument("-i", "--input", type=Path, required=True, help="Input PDF file path")
+    parser.add_argument("-o", "--output", type=str, required=True,
+                        help="Output filename template, e.g. 'folder/{page}.png'")
+    parser.add_argument("--scale", type=int, default=15,
+                        help="Image resolution scale factor (default: 15)")
     args = parser.parse_args()
 
-    pdf2img(file=args.file, suffix=args.suffix, root=args.root, blowup=args.blowup)
+    pdf2img(input_file=args.input, output=args.output, blowup=args.scale)

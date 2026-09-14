@@ -17,10 +17,10 @@ Use Python scripts in `<skill-dir>/scripts/` for automated processing.
 
 | Script | Function | Usage Example |
 |--------|----------|---------------|
-| `pdf2img.py` | Convert PDF to images | `python pdf2img.py input.pdf --output-dir ./images` |
-| `merge_pdf.py` | Merge PDF files | `python merge_pdf.py file1.pdf file2.pdf --output merged.pdf` |
-| `fsize_lim_save.py` | Compress image to target size | `python fsize_lim_save.py input.jpg --target-size 500kb` |
-| `remove_background.py` | Remove image background | `python remove_background.py input.png --output output.png` |
+| `pdf2img.py` | Convert PDF to images | `python pdf2img.py -i input.pdf -o 'images/{page}.png'` |
+| `merge_pdf.py` | Merge PDF files | `python merge_pdf.py -i file1.pdf file2.pdf -o merged.pdf` |
+| `fsize_lim_save.py` | Compress image to target size | `python fsize_lim_save.py -i input.jpg -o output.jpg --limit 500000` |
+| `remove_background.py` | Remove image background | `python remove_background.py -i input.png -o output.png` |
 
 **For detailed usage:**
 ```bash
