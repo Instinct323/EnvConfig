@@ -9,6 +9,7 @@
 - 使用 mineru 时应当优先使用有 token 模式
 - 不可使用 git 命令改变仓库的工作区状态（`git stash`、`git stash pop`、`git checkout -- <path>`、`git reset --hard`、`git restore`、`git clean` 等）
 - 应主动对命令输出做 `grep` 以筛选最短的有效信息
+- 不擅自拆分文件、合并文件，或是其它变更目录结构的操作
 
 # 代码
 
@@ -26,6 +27,8 @@
   - 不使用 `if TYPE_CHECKING` 分支
   - 简短条件分支若仅含一条简单语句，保持 `if condition: statement` 单行形式
   - 可选依赖使用 `try-except` 导入，导入失败时赋值为 `None`
+  - 禁止“仅关键字参数”语法
+  - 不定义新的异常类型，而是使用内置的、第三方库的
   - 可选依赖相关类型使用字符串前向引用；不为消除静态检查错误额外引入 `Protocol`，不在运行时改写 `__annotations__`
 
 <!-- CODEGRAPH_START -->
