@@ -27,7 +27,7 @@ cp -r andrej-karpathy-skills/skills "$DST"
 
 # clawhub: https://clawhub.ai/
 cd "$DST"
-bun i -g clawhub
+npm install -g clawhub
 clawhub install --force @skaravind/caveman
 clawhub install --force @mineru-extract/mineru-ai
 clawhub install --force @gpyangyoujun/multi-search-engine

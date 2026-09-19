@@ -7,5 +7,5 @@ DST=~/.config/opencode
 "${SRC}/install-skills.bash" "$DST"
 
 # codegraph
-bun i -g @colbymchenry/codegraph
+npm install -g @colbymchenry/codegraph
 codegraph install --yes

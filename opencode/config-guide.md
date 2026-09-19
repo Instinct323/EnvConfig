@@ -34,5 +34,5 @@ chmod +x *.bash
 引导用户执行以下命令，以配置 OMO:
 
 ```bash
-bunx oh-my-openagent install
+npx oh-my-openagent install
 ```
