@@ -8,7 +8,7 @@ from pathlib import Path
 
 def execute(cmd, check=True):
     ret = print(cmd) or os.system(cmd)
-    if check and ret: raise OSError(f"Fail to execute")
+    if check and ret: raise OSError("Fail to execute")
 
 
 def parse_seq(value: str) -> list[int]:
@@ -52,7 +52,7 @@ class DockerCmd(dict):
         # self["gpus"] = self.get("gpus", "all")
 
     def export(self) -> str:
-        cmd = f"docker run "
+        cmd = "docker run "
         # other
         if self.get("name"): cmd += f"--name={self['name']} "
         if self.get("workdir"): cmd += f"--workdir={self['workdir']} "

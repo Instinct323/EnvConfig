@@ -81,7 +81,7 @@ class Registry:
                 print(f"{k}: report file not found at `{p}`")
                 continue
             report = p.read_text()
-            if not re.search(pattern, report, flags=re.S):
+            if not re.search(pattern, report, flags=re.DOTALL):
                 print(f"{k}: bad report, please read `{SCHEMA_REPORT}` first to understand the content requirements.")
 
     def fetch_final_report(self):

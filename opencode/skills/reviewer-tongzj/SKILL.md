@@ -29,8 +29,8 @@ Run all 4 agents in Code Review group:
 
 ```typescript
 task(category="ultrabrain", load_skills=["reviewer-tongzj"], description="Review code architecture", prompt="Architecture (CODE): [files]", run_in_background=true)
-task(category="writing", load_skills=["reviewer-tongzj"], description="Review code comments", prompt="Code Comments: [files]", run_in_background=true)
-task(category="deep", load_skills=["reviewer-tongzj"], description="Find reinvented wheels", prompt="Wheel Reinvention: [files]", run_in_background=true)
+task(category="unspecified-low", load_skills=["reviewer-tongzj"], description="Review code comments", prompt="Code Comments: [files]", run_in_background=true)
+task(category="deep-high", load_skills=["reviewer-tongzj"], description="Find reinvented wheels", prompt="Wheel Reinvention: [files]", run_in_background=true)
 task(category="ultrabrain", load_skills=["reviewer-tongzj"], description="Find real bugs", prompt="Bug Finder: [files]", run_in_background=true)
 ```
 
@@ -39,9 +39,9 @@ task(category="ultrabrain", load_skills=["reviewer-tongzj"], description="Find r
 Run all 3 agents in Writing Review group:
 
 ```typescript
-task(category="writing", load_skills=["reviewer-tongzj"], description="Review project documentation", prompt="Documentation: [files]", run_in_background=true)
-task(category="writing", load_skills=["reviewer-tongzj"], description="Review writing clarity", prompt="Clarity: [document]", run_in_background=true)
-task(category="writing", load_skills=["reviewer-tongzj"], description="Review academic style", prompt="Academic Style: [document]", run_in_background=true)
+task(category="unspecified-low", load_skills=["reviewer-tongzj"], description="Review project documentation", prompt="Documentation: [files]", run_in_background=true)
+task(category="unspecified-low", load_skills=["reviewer-tongzj"], description="Review writing clarity", prompt="Clarity: [document]", run_in_background=true)
+task(category="unspecified-low", load_skills=["reviewer-tongzj"], description="Review academic style", prompt="Academic Style: [document]", run_in_background=true)
 ```
 
 **Rule**: Only select ONE group based on the task type. Don't mix code and writing agents unless explicitly requested.

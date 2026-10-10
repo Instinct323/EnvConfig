@@ -3,13 +3,12 @@
 import argparse
 import json
 import os
-
 from pathlib import Path
 
 
 def execute(cmd, check=True):
     ret = print("\033[32m\033[1m" + cmd + "\033[0m") or os.system(cmd)
-    if check and ret: raise OSError(f"Fail to execute")
+    if check and ret: raise OSError("Fail to execute")
     return ret
 
 

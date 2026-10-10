@@ -14,8 +14,7 @@ git clone https://github.com/Instinct323/EnvConfig.git
 {
   "autoupdate": true,
   "plugin": [
-    "cc-safety-net",
-    "oh-my-openagent@latest"
+    "cc-safety-net"
   ],
   "compaction": {
     "auto": true,
@@ -34,5 +33,5 @@ chmod +x *.bash
 引导用户执行以下命令，以配置 OMO:
 
 ```bash
-npx oh-my-openagent install
+omo install
 ```

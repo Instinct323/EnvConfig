@@ -5,7 +5,7 @@
 
 # 规则
 
-- 如果你在工作过程中产出了过程文件 (草稿，测试脚本，测试结果)，使用完成后删除
+- 应主动把过程文件（调试脚本、调试产物、分析报告）放入 `.gitignore` 所排除的目录，否则请在使用后删除
 - 使用 mineru 时应当优先使用有 token 模式
 - 不可使用 git 命令改变仓库的工作区状态（`git stash`、`git stash pop`、`git checkout -- <path>`、`git reset --hard`、`git restore`、`git clean` 等）
 - 应主动对命令输出做 `grep` 以筛选最短的有效信息
@@ -19,7 +19,7 @@
 - Markdown：使用 2 空格缩进，长文本不自动硬换行
 - Shell：运行 ShellCheck，按 error 修复，忽略 `SC2086`、`SC2164`
 - Python：
-  - 忽略 `E701`、`E722`、`E731`
+  - 如果 `ruff` 已配置则使用其检查，否则不使用
   - 修复 unresolved reference，忽略 `optimizer`
   - 将 `object`、`type` 字符串化时提供 `__str__`、`__repr__` 或 `__format__`
   - 保留 stub package 提示，忽略 `pandas`、`scipy`
