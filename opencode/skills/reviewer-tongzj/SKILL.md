@@ -21,28 +21,17 @@ Do NOT trigger for general code review requests without mentioning TongZJ.
 
 ## Quick Usage
 
-**Select Agent Group based on task type, then spawn ALL agents in that group:**
+**Select one agent group based on task type, then delegate each reviewer using the current platform's subagent interface.** Run independent reviewers in parallel when supported. Include the relevant reviewer rubric below directly in each prompt, along with the files and request to report findings only.
 
 ### For Code Review
 
-Run all 4 agents in Code Review group:
+Run all 4 agents in Code Review group. Use the platform's current delegation syntax for each reviewer, with the matching reviewer focus/rubric in the prompt. For OpenCode, call `functions.subagent` with `agent: "general"`, `description`, `prompt`, and (for parallel work) `background: true`.
 
-```typescript
-task(category="ultrabrain", load_skills=["reviewer-tongzj"], description="Review code architecture", prompt="Architecture (CODE): [files]", run_in_background=true)
-task(category="unspecified-low", load_skills=["reviewer-tongzj"], description="Review code comments", prompt="Code Comments: [files]", run_in_background=true)
-task(category="deep-high", load_skills=["reviewer-tongzj"], description="Find reinvented wheels", prompt="Wheel Reinvention: [files]", run_in_background=true)
-task(category="ultrabrain", load_skills=["reviewer-tongzj"], description="Find real bugs", prompt="Bug Finder: [files]", run_in_background=true)
-```
+Do not pass unsupported legacy fields such as `category` or `load_skills` to OpenCode's subagent tool.
 
 ### For Writing Review
 
-Run all 3 agents in Writing Review group:
-
-```typescript
-task(category="unspecified-low", load_skills=["reviewer-tongzj"], description="Review project documentation", prompt="Documentation: [files]", run_in_background=true)
-task(category="unspecified-low", load_skills=["reviewer-tongzj"], description="Review writing clarity", prompt="Clarity: [document]", run_in_background=true)
-task(category="unspecified-low", load_skills=["reviewer-tongzj"], description="Review academic style", prompt="Academic Style: [document]", run_in_background=true)
-```
+Run all 3 agents in Writing Review group using the platform's current delegation syntax. In OpenCode, use `functions.subagent` with `agent: "general"`, `description`, `prompt`, and `background: true`. Put the specific writing-review rubric in each prompt.
 
 **Rule**: Only select ONE group based on the task type. Don't mix code and writing agents unless explicitly requested.
 
@@ -74,11 +63,9 @@ After all agents complete, write the consolidated review results to an issue doc
 | b3 | ...      | ...   | low      |
 ```
 
-**Final filtering step**: After writing the consolidated report, delegate one additional agent:
+**Final filtering step**: After writing the consolidated report, delegate one additional agent to validate and normalize the findings. In OpenCode, use `functions.subagent` with `agent: "general"`, `description`, `prompt`, and `background: false`:
 
-```typescript
-task(category="unspecified-high", load_skills=["reviewer-tongzj"], description="Filter review findings", prompt="Final Filter: [consolidated report] [reviewed sources]", run_in_background=false)
-```
+Prompt: `Final Filter: [consolidated report] [reviewed sources]`
 
 Filter in this order:
 
@@ -275,6 +262,7 @@ Summary: [Brief overview of key observations]
 
 > **Versioning Policy**: Use minor versions (v1.1, v1.2...) for incremental updates. Only bump major version (v2.0) when explicitly requested by the author.
 
+- **v1.8**: Clarified that delegation uses the current platform interface; added OpenCode-specific parameter guidance without making the skill platform-specific.
 - **v1.7**: Reworked Architecture Reviewer checks into four orthogonal dimensions — parameter flow, responsibility ownership, change impact, and runtime behavior — with concrete evidence requirements
 - **v1.6**: Added review exceptions for Python fail-fast contracts, minimal annotations, and tiny duplication that avoids cross-file coupling
 - **v1.5**: Refined Architecture Reviewer (Local Reasoning) check 2 — Expanded "no fragmented knowledge" to explicitly cover overly granular file splitting alongside module fragmentation

@@ -29,9 +29,3 @@ git clone https://github.com/Instinct323/EnvConfig.git
 chmod +x *.bash
 ./init-opencode.bash
 ```
-
-引导用户执行以下命令，以配置 OMO:
-
-```bash
-omo install
-```
