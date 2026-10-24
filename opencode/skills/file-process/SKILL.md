@@ -9,7 +9,17 @@ This skill provides two modes of file processing:
 
 ---
 
-## Script-Based Processing
+## File Conversion and Processing
+
+### PDF to Images
+
+Use `pdftoppm` (Poppler) to convert PDF pages to images; do not write a custom conversion script. Check its help before choosing options:
+
+```bash
+pdftoppm -h
+```
+
+### Script-Based Processing
 
 Use Python scripts in `<skill-dir>/scripts/` for automated processing.
 
@@ -17,7 +27,6 @@ Use Python scripts in `<skill-dir>/scripts/` for automated processing.
 
 | Script | Function | Usage Example |
 |--------|----------|---------------|
-| `pdf2img.py` | Convert PDF to images | `python pdf2img.py -i input.pdf -o 'images/{page}.png'` |
 | `merge_pdf.py` | Merge PDF files | `python merge_pdf.py -i file1.pdf file2.pdf -o merged.pdf` |
 | `fsize_lim_save.py` | Compress image to target size | `python fsize_lim_save.py -i input.jpg -o output.jpg --limit 500000` |
 | `remove_background.py` | Remove image background | `python remove_background.py -i input.png -o output.png` |

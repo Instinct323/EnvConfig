@@ -14,7 +14,8 @@ git clone https://github.com/Instinct323/EnvConfig.git
 {
   "autoupdate": true,
   "plugin": [
-    "cc-safety-net"
+    "cc-safety-net",
+    "oh-my-openagent@latest"
   ],
   "compaction": {
     "auto": true,

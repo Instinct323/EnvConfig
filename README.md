@@ -29,8 +29,8 @@ ubuntu/clone-bin.bash
   - RUN: update-grub
 
 - `/etc/fstab`
-  - RUN: ntfsfix /dev/*
-  - ADD: /dev/disk/by-uuid/* /media/user/* ntfs defaults 0 2
+  - RUN: ntfsfix /dev/{TARGET}
+  - ADD: /dev/disk/by-uuid/{TARGET} /media/user/{DST} ntfs-3g defaults,uid=1000,gid=1000,umask=022 0 0
 
 - `/etc/ppp/options`
   - DEL: lcp-echo-interval
