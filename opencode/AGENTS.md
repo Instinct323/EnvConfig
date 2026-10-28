@@ -7,8 +7,10 @@
 ## 规则
 
 - config: 使用 mineru 时应当优先使用有 token 模式
-- file: 应主动把过程文件（调试脚本、调试产物、分析报告）放入 `.gitignore` 所排除的目录，否则请在使用后删除
 - file: 不擅自拆分文件、合并文件，或是其它变更目录结构的操作
+- file: 把调试脚本、调试产物（日志等）放入 `/tmp/agent/`
+- file: 如果用户未指定具体路径，你应该把编写的产物（分析、报告、代码）暂时放入 `.omo/`
+- file: 如果脚本、代码位于 `runs/**` 中，则把重要的产物放在其所在文件夹；否则，则放入 `runs/**`
 - read: 应主动对命令输出做 `grep` 以筛选最短的有效信息
 - safe: 不可使用 git 命令改变仓库的工作区状态（`git stash`、`git stash pop`、`git checkout -- <path>`、`git reset --hard`、`git restore`、`git clean` 等）
 

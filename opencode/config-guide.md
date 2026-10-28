@@ -14,8 +14,7 @@ git clone https://github.com/Instinct323/EnvConfig.git
 {
   "autoupdate": true,
   "plugin": [
-    "cc-safety-net",
-    "oh-my-openagent@latest"
+    "cc-safety-net"
   ],
   "compaction": {
     "auto": true,
@@ -29,4 +28,13 @@ git clone https://github.com/Instinct323/EnvConfig.git
 ```bash
 chmod +x *.bash
 ./init-opencode.bash
+```
+
+引导用户选择性安装插件：
+
+```bash
+# omo
+bunx oh-my-opencode-slim@latest install --background-subagents=yes --no-tui
+# paseo
+npm install -g @getpaseo/cli
 ```
