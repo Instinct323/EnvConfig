@@ -8,13 +8,21 @@ git clone https://github.com/Instinct323/EnvConfig.git
 
 ---
 
-将以下内容更新到 `~/.config/opencode/opencode.jsonc`：
+将以下内容更新到 `~/.config/opencode/opencode.jsonc`，保留已有的其他配置：
 
 ```json
 {
+  "$schema": "https://opencode.ai/config.json",
   "autoupdate": true,
   "plugin": [
     "cc-safety-net"
+  ],
+  "policies": [
+    { "action": "tool.use", "resource": "shell:git checkout *", "effect": "deny" },
+    { "action": "tool.use", "resource": "shell:git clean *", "effect": "deny" },
+    { "action": "tool.use", "resource": "shell:git reset *", "effect": "deny" },
+    { "action": "tool.use", "resource": "shell:git restore *", "effect": "deny" },
+    { "action": "tool.use", "resource": "shell:git stash *", "effect": "deny" }
   ],
   "compaction": {
     "auto": true,

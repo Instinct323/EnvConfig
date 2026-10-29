@@ -12,7 +12,6 @@
 - file: 如果用户未指定具体路径，你应该把编写的产物（分析、报告、代码）暂时放入 `.omo/`
 - file: 如果脚本、代码位于 `runs/**` 中，则把重要的产物放在其所在文件夹；否则，则放入 `runs/**`
 - read: 应主动对命令输出做 `grep` 以筛选最短的有效信息
-- safe: 不可使用 git 命令改变仓库的工作区状态（`git stash`、`git stash pop`、`git checkout -- <path>`、`git reset --hard`、`git restore`、`git clean` 等）
 
 ## 代码
 
