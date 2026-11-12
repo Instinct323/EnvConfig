@@ -25,6 +25,9 @@ cp -r skills/skills "$DST"
 git clone --depth 1 https://github.com/forrestchang/andrej-karpathy-skills.git
 cp -r andrej-karpathy-skills/skills "$DST"
 
+## Filee
+curl -fL --create-dirs https://raw.githubusercontent.com/KnifeLemon/Filee/main/skills/filee/SKILL.md -o "$DST/skills/filee/SKILL.md"
+
 # clawhub: https://clawhub.ai/
 cd "$DST"
 npm install -g clawhub

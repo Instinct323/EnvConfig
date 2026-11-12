@@ -6,7 +6,9 @@
 
 ## 规则
 
-- config: 使用 mineru 时应当优先使用有 token 模式
+- config: 使用 mineru 时应当优先使用有 token 模式（失效时请求用户更新）
+- defense: 假设用户遵守契约，不做过多校验
+- defense: 遵守接口约定，不为低概率事件添加护栏
 - file: 不擅自拆分文件、合并文件，或是其它变更目录结构的操作
 - file: 把调试脚本、调试产物（日志等）放入 `/tmp/agent/`
 - file: 如果用户未指定具体路径，你应该把编写的产物（分析、报告、代码）暂时放入 `.omo/`
@@ -15,6 +17,7 @@
 
 ## 代码
 
+- 过长的代码应该分成多个逻辑块（用空行分隔），每个逻辑块最小 3 行
 - CMake、CSS：使用 2 空格缩进，tab 宽度为 2
 - C/C++：运行 Clang-Tidy；不要仅为 cast 风格、声明赋值合并、冗余限定符、`make_*` 替换或作用域收窄而改写代码
 - JSON：tab 宽度为 2；对象、数组超过行宽时按需换行
@@ -23,6 +26,7 @@
 
 ### Python
 
+- brief: 不写 main 函数，而是直接内联到 `if __name__ == "__main__"` 下
 - brief: 不使用 `if TYPE_CHECKING` 分支
 - brief: 修复 unresolved reference，忽略 `optimizer`
 - brief: 不定义新的异常类型，而是使用内置的、第三方库的
