@@ -33,4 +33,3 @@ cd "$DST"
 npm install -g clawhub
 clawhub install --force @skaravind/caveman
 clawhub install --force @mineru-extract/mineru-ai
-clawhub install --force @gpyangyoujun/multi-search-engine

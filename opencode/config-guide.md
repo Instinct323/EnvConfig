@@ -15,14 +15,15 @@ git clone https://github.com/Instinct323/EnvConfig.git
   "$schema": "https://opencode.ai/config.json",
   "autoupdate": true,
   "plugin": [
-    "cc-safety-net"
+    "cc-safety-net",
+    "@slkiser/opencode-quota"
   ],
   "policies": [
-    { "action": "tool.use", "resource": "shell:git checkout *", "effect": "deny" },
-    { "action": "tool.use", "resource": "shell:git clean *", "effect": "deny" },
-    { "action": "tool.use", "resource": "shell:git reset *", "effect": "deny" },
-    { "action": "tool.use", "resource": "shell:git restore *", "effect": "deny" },
-    { "action": "tool.use", "resource": "shell:git stash *", "effect": "deny" }
+    {"action": "tool.use", "resource": "shell:git checkout *", "effect": "deny"},
+    {"action": "tool.use", "resource": "shell:git clean *", "effect": "deny"},
+    {"action": "tool.use", "resource": "shell:git reset *", "effect": "deny"},
+    {"action": "tool.use", "resource": "shell:git restore *", "effect": "deny"},
+    {"action": "tool.use", "resource": "shell:git stash *", "effect": "deny"}
   ],
   "compaction": {
     "auto": true,
@@ -38,11 +39,24 @@ chmod +x *.bash
 ./init-opencode.bash
 ```
 
-引导用户选择性安装插件：
+## Optional Setup
+
+### Plugins & Tools
+
+你可以根据需要安装以下插件和工具：
 
 ```bash
-# omo
+# oh-my-opencode-slim
 bunx oh-my-opencode-slim@latest install --background-subagents=yes --no-tui
 # paseo
 npm install -g @getpaseo/cli
 ```
+
+### MCP Integrations
+
+告诉我你希望在 OpenCode 中使用哪些软件或服务，我会按需安装并配置对应的 MCP：
+
+- **已安装的软件**：例如 ArtCraft 系列产品、Zotero，接入后可在 OpenCode 中直接使用。
+- **在线服务**：例如通过 [arxiv-mcp-server](https://github.com/blazickjp/arxiv-mcp-server) 搜索、下载和阅读 arXiv 论文，读取原始 LaTeX、导出引用及订阅研究主题。
+
+你只需说明需要哪些集成，我会根据项目最新说明和当前 OpenCode 配置方式完成安装。

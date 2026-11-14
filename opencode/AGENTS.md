@@ -3,6 +3,7 @@
 - brief: 使用 caveman 模式
 - figure: 必要的时候使用线框图具象化你的表述
 - lang: 始终使用中文回复，可穿插少量英文术语
+- research: 做文献调研时，利用 [arxiv-mcp-server](https://github.com/blazickjp/arxiv-mcp-server)、Zotero MCP 进行检索
 
 ## 规则
 
