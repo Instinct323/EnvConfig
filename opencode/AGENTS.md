@@ -19,7 +19,7 @@
 ## Temporary Files
 
 ```
-/tmp/agent/
+/tmp/opencode/
 ├── .cache/              # 缓存数据
 │   └── mineru/          # MinerU 解析结果
 │       ├── {project}/   # 每个项目一个目录
