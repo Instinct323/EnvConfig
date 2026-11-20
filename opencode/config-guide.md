@@ -17,6 +17,12 @@ git clone https://github.com/Instinct323/EnvConfig.git
   "plugin": [
     "@slkiser/opencode-quota"
   ],
+  "commands": {
+    "optimize": {
+      "description": "精简参数和代码，解决性能瓶颈",
+      "template": "优化 $ARGUMENTS；未指定范围时先检查当前改动。保持行为和接口契约。\n梳理参数流向，删掉冗余参数、路径、转发层和重复校验；保留外部输入与安全边界校验。优先复用现有库，确能降低维护成本时再引入成熟第三方库。\n先实测定位瓶颈，优先做既简化代码又加速的改动。运行相关测试，在相同条件下对比优化前后的基准结果，汇报改动、测试结果、性能实测值及变化幅度。"
+    }
+  },
   "compaction": {
     "auto": true,
     "buffer": "15%"

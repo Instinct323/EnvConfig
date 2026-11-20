@@ -51,6 +51,7 @@
 - package: 用 `try-except` 导入可选依赖；导入失败时，跳过或赋值为 `None`
 - style: 将 `object`、`type` 字符串化时提供 `__str__`、`__repr__` 或 `__format__`
 - style: 使用 `<arg>: <type> = None` 代替 `<arg>: <type> | None = None`，省略 `-> None`
+- style: 单行 docstring 开头的 `"""` 与正文之间至少留一个空格
 - syntax: 仅在已配置 Ruff 时运行 `ruff` 检查
 
 <!-- CODEGRAPH_START -->
