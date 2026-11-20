@@ -21,59 +21,37 @@ Do NOT trigger for general code review requests without mentioning TongZJ.
 
 ## Quick Usage
 
-**Select one agent group based on task type, then delegate each reviewer using the current platform's subagent interface.** Run independent reviewers in parallel when supported. Include the relevant reviewer rubric below directly in each prompt, along with the files and request to report findings only.
+### 1. Delegate
 
-### For Code Review
+- **Code review:** Run all 4 Code Review agents.
+- **Writing review:** Run all 3 Writing Review agents.
 
-Run all 4 agents in Code Review group. Use the platform's current delegation syntax for each reviewer, with the matching reviewer focus/rubric in the prompt. For OpenCode, call `functions.subagent` with `agent: "general"`, `description`, `prompt`, and (for parallel work) `background: true`.
+Use only the group that matches the task unless the user explicitly requests both. Use the platform's current subagent interface and run independent reviewers in parallel when supported. Give each reviewer the files, the matching rubric below, and instructions to report findings without editing the source.
 
-Do not pass unsupported legacy fields such as `category` or `load_skills` to OpenCode's subagent tool.
+### 2. Consolidate
 
-### For Writing Review
-
-Run all 3 agents in Writing Review group using the platform's current delegation syntax. In OpenCode, use `functions.subagent` with `agent: "general"`, `description`, `prompt`, and `background: true`. Put the specific writing-review rubric in each prompt.
-
-**Rule**: Only select ONE group based on the task type. Don't mix code and writing agents unless explicitly requested.
-
-### Result Collection
-
-After all agents complete, write the consolidated review results to an issue document with sequentially numbered items:
-
-- Sort by severity: Within each section, order issues as `high → medium → low`. This puts the most actionable problems at the top.
-- Keep tables aligned: Use the same column widths across all sections so the report is easy to scan.
-- One issue per row: Do not merge multiple observations into a single cell.
+After all reviewers finish, draft one issue document with a scored section per reviewer. Use one issue per row. Within each section, order issues `high → medium → low` and number them sequentially (e.g. `a1`, `a2` for the first section, `b1`, `b2` for the second).
 
 ```markdown
 # Review Issues
-
-## AI Artifacts (Score: 7/10)
-
-|    | Location | Issue | Severity |
-|----|----------|-------|----------|
-| a1 | ...      | ...   | high     |
-| a2 | ...      | ...   | medium   |
-| a3 | ...      | ...   | low      |
 
 ## Architecture (Score: 8/10)
 
 |    | Location | Issue | Severity |
 |----|----------|-------|----------|
-| b1 | ...      | ...   | high     |
-| b2 | ...      | ...   | medium   |
-| b3 | ...      | ...   | low      |
+| a1 | ...      | ...   | high     |
+| a2 | ...      | ...   | medium   |
 ```
 
-**Final filtering step**: After writing the consolidated report, delegate one additional agent to validate and normalize the findings. In OpenCode, use `functions.subagent` with `agent: "general"`, `description`, `prompt`, and `background: false`:
+### 3. Validate and finalize
 
-Prompt: `Final Filter: [consolidated report] [reviewed sources]`
-
-Filter in this order:
+Give one additional agent the draft report and the reviewed sources. Ask it to filter in this order:
 
 1. **Validate** — Keep only issues that are **Real** (demonstrably exist), **Unique** (do not share another item's root cause), and **Improvable** (have a clearly better fix).
 2. **Apply accepted tradeoffs** — Remove natural Python exceptions used as fail-fast contracts unless they hide failure, cross a trust boundary, or risk corrupting state; omitted optional annotations that only describe failure paths; and tiny stable duplication that avoids cross-file coupling.
 3. **Normalize** — Re-sort by severity and renumber items sequentially.
 
-Keep only concrete, verifiable issues worth fixing.
+Apply the filter results to the issue document.
 
 ---
 
@@ -131,32 +109,6 @@ Report:
 
 Score: [1-10]/10
 Summary: [Brief overview of key observations]
-
----
-
-(The appendix should also be included in the report for reference)
-
-**Python docstring (Sphinx Style):**
-
-# Single-line: One space before and after triple quotes
-""" Brief description of what this does. """
-
-# Multi-line
-""" 
-Brief description.
-:param x: X coordinate.
-:return: Dictionary with metrics.
-"""
-
-**C++ docstring (Doxygen Style):**
-
-/**
- * @brief Brief description of function purpose
- * @param param1 Description of parameter
- * @param param2 Description of parameter
- * @return Description of return value
- * @throws ExceptionType When this occurs
- */
 ```
 
 ### Wheel Reinvention Reviewer
@@ -253,21 +205,3 @@ Report:
 Score: [1-10]/10
 Summary: [Brief overview of key observations]
 ```
-
----
-
-## Appendix
-
-### Update Log
-
-> **Versioning Policy**: Use minor versions (v1.1, v1.2...) for incremental updates. Only bump major version (v2.0) when explicitly requested by the author.
-
-- **v1.8**: Clarified that delegation uses the current platform interface; added OpenCode-specific parameter guidance without making the skill platform-specific.
-- **v1.7**: Reworked Architecture Reviewer checks into four orthogonal dimensions — parameter flow, responsibility ownership, change impact, and runtime behavior — with concrete evidence requirements
-- **v1.6**: Added review exceptions for Python fail-fast contracts, minimal annotations, and tiny duplication that avoids cross-file coupling
-- **v1.5**: Refined Architecture Reviewer (Local Reasoning) check 2 — Expanded "no fragmented knowledge" to explicitly cover overly granular file splitting alongside module fragmentation
-- **v1.4**: Added "Appropriate Verbosity" check to Code Comments Reviewer — Detects excessive, redundant, and overly detailed documentation that adds no value over self-documenting code
-- **v1.3**: Added Wheel Reinvention Reviewer to Code Review group — Detects code that duplicates third-party library functionality or workspace utilities, and flags unnecessary heavy dependencies for trivial functionality
-- **v1.2**: Split Documentation Reviewer into Code Comments Reviewer (Code Group) and Documentation Reviewer (Writing Group) — Code Comments focuses on inline code docs and docstrings; Documentation covers project-level docs (README, API docs, guides)
-- **v1.1**: Added Documentation Reviewer agent to Code Review group — Evaluates code documentation quality including inline comments, function docs, and API documentation completeness
-- **v1.0**: Initial release — Multi-agent review system with 4 specialized reviewers (AI Artifacts, Architecture, Clarity, Academic Style), inline taglines, merged desc/tradeoff format

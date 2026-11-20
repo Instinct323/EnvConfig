@@ -33,10 +33,15 @@
 
 - 长代码按逻辑分块，块之间用空行分隔，每块至少 3 行
 - CMake、CSS：使用 2 空格缩进，tab 宽度为 2
-- C/C++：运行 Clang-Tidy；不要仅为 cast 风格、声明赋值合并、冗余限定符、`make_*` 替换或作用域收窄而改写代码
 - JSON：tab 宽度为 2；对象、数组超过行宽时按需换行
 - Markdown：使用 2 空格缩进，长文本不自动硬换行
 - Shell：运行 ShellCheck，修复 `error` 级问题，忽略 `SC2086` 和 `SC2164`
+
+### C/C++
+
+- lint: 运行 Clang-Tidy
+- style: 不要仅为 cast 风格、声明赋值合并、冗余限定符、`make_*` 替换或作用域收窄而改写代码
+- comment: C++ 文档注释使用 Doxygen 风格；简述用 `@brief`，参数用 `@param`，返回值用 `@return`，异常用 `@throws`
 
 ### Python
 
@@ -46,13 +51,14 @@
 - brief: 不定义新的异常类型，而是使用内置的、第三方库的
 - brief: 可选依赖的类型注解使用字符串前向引用；不单为消除静态检查错误引入 `Protocol`，也不在运行时改写 `__annotations__`
 - brief: 简短条件分支若仅含一条简单语句，保持 `if condition: statement` 单行形式
+- comment: 单行 docstring 正文两侧各留一个空格，写成 `""" 简述。 """`
+- comment: 多行 docstring 使用 Sphinx 风格；说明参数用 `:param name:`，说明返回值用 `:return:`
 - feature: 禁止“仅关键字参数”语法
 - package: 保留 stub package 提示，忽略 `pandas`、`scipy`
 - package: 用 `try-except` 导入可选依赖；导入失败时，跳过或赋值为 `None`
 - style: 将 `object`、`type` 字符串化时提供 `__str__`、`__repr__` 或 `__format__`
 - style: 使用 `<arg>: <type> = None` 代替 `<arg>: <type> | None = None`，省略 `-> None`
-- style: 单行 docstring 开头的 `"""` 与正文之间至少留一个空格
-- syntax: 仅在已配置 Ruff 时运行 `ruff` 检查
+- syntax: 存在 Ruff 配置时，每次修改 Python 代码后必须运行 `ruff check`
 
 <!-- CODEGRAPH_START -->
 ## CodeGraph
