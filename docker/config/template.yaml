@@ -1,0 +1,22 @@
+image: instinct323/jammy
+file: ubuntu.dockerfile
+name: myjammy
+
+# 首项映射至 22，其余同号；支持逗号、范围
+port: "30001-30003"
+
+volume:
+  "/etc/localtime": "/etc/localtime:ro"
+  # "/dev/bus/usb": "/dev/bus/usb"
+  # "/tmp/.X11-unix": "/tmp/.X11-unix"
+  # "/home/{user}/workbench": "/home/workbench"
+
+env:
+  NVIDIA_DRIVER_CAPABILITIES: "all"
+  NVIDIA_VISIBLE_DEVICES: "all"
+  # QT_X11_NO_MITSHM: "1"
+  # DISPLAY: "$DISPLAY"  # Ubuntu
+  # DISPLAY: "host.docker.internal:0"  # Windows
+
+workdir: /home/workbench
+options: -itd --runtime=nvidia

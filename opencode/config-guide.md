@@ -32,6 +32,7 @@ git clone https://github.com/Instinct323/EnvConfig.git
     {"action": "external_directory", "resource": "/tmp/*", "effect": "allow"},
     {"action": "external_directory", "resource": "~/miniconda3/*", "effect": "allow"},
     {"action": "external_directory", "resource": "~/.config/opencode/*", "effect": "allow"},
+    {"action": "external_directory", "resource": "~/.local/share/opencode/shell/*", "effect": "allow"},
     {"action": "read", "resource": "~/.config/opencode/service.json", "effect": "ask"},
     {"action": "read", "resource": "~/.local/share/opencode/account.json", "effect": "deny"},
     {"action": "read", "resource": "~/.local/share/opencode/auth.json", "effect": "deny"}

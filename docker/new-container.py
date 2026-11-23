@@ -1,20 +1,20 @@
 #!/usr/bin/python3
 
 import argparse
-import json
 import os
+import subprocess
 from pathlib import Path
+
+import yaml
 
 
 def execute(cmd, check=True):
-    ret = print(cmd) or os.system(cmd)
-    if check and ret: raise OSError("Fail to execute")
+    print(cmd)
+    subprocess.run(cmd, shell=True, check=check)
 
 
 def parse_seq(value: str) -> list[int]:
-    """
-    Parse a sequence string like "1-3,5,7-8" to a list of integers [1,2,3,5,7,8]
-    """
+    """ Parse a sequence string like "1-3,5,7-8" to a list of integers [1,2,3,5,7,8] """
     value = str(value).replace(" ", "").split(",")
     ret = []
     for p in filter(None, value):
@@ -33,7 +33,7 @@ class DockerCmd(dict):
         cfg = cfg.absolute()
         os.chdir(cfg.parent)
         with cfg.open() as f:
-            super().__init__(json.load(f))
+            super().__init__(yaml.safe_load(f))
         assert set(self.keys()).issubset(self.registered), f"Invalid keys: {set(self.keys()) - self.registered}"
         # build Dockerfile
         file = Path(self.get("file"))
@@ -76,9 +76,8 @@ class DockerCmd(dict):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument("json", type=str, help="Docker container configuration file")
+    parser.add_argument("config", type=str, help="Docker container configuration file (YAML)")
     args = parser.parse_args()
 
-    # D:\Software\Anaconda3\envs\torch2\python bin\new-container.py my-jammy.json
-    dcmd = DockerCmd(Path(args.json))
+    dcmd = DockerCmd(Path(args.config))
     execute(dcmd.export())
