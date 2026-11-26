@@ -1,0 +1,46 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "autoupdate": true,
+  "plugin": [
+    "@slkiser/opencode-quota"
+  ],
+  "commands": {
+    "myconfig": {
+      "description": "按照 EnvConfig 仓库指南配置 OpenCode 环境",
+      "template": "将仓库 https://github.com/Instinct323/EnvConfig.git 克隆到 /tmp/opencode/ 下新建的独立临时目录，阅读并按照其中的 opencode/config-guide.md 配置当前环境，保留已有的其他配置。配置完成后删除本次克隆的临时目录，并汇报配置与验证结果。"
+    },
+    "refact": {
+      "description": "精简代码结构，提升可读性和可维护性",
+      "template": "重构 $ARGUMENTS，保持现有行为和接口契约。\n梳理参数与调用关系，删去冗余参数、转发层、重复逻辑和重复校验；保留外部输入与安全边界校验。优先复用现有库，避免过度抽象和无关改写。\n运行相关测试，汇报重构要点与验证结果。"
+    },
+    "optimize": {
+      "description": "实测定位性能瓶颈，优化代码性能",
+      "template": "优化 $ARGUMENTS 的代码性能。\n先建立基准并实测定位瓶颈，再针对主要耗时或资源开销优化，避免凭猜测改写。优先采用简单、可维护的方案，必要时复用成熟库。\n运行相关测试，在相同条件下对比优化前后的基准结果，汇报改动、测试结果、性能实测值及变化幅度；若无法实测，明确说明限制，不声称性能提升。"
+    },
+    "ppt-copy": {
+      "description": "编写或润色简洁自然的 PPT 文案",
+      "template": "接下来的对话中，编写或润色适合直接放入 PPT 的文案：用语简洁自然，允许易懂的符号和缩写；标题突出观点，同级条目结构平行，每条聚焦一个要点。"
+    }
+  },
+  "compaction": {
+    "auto": true,
+    "buffer": "15%"
+  },
+  "permissions": [
+    {"action": "external_directory", "resource": "/tmp/*", "effect": "allow"},
+    {"action": "external_directory", "resource": "~/miniconda3/*", "effect": "allow"},
+    {"action": "external_directory", "resource": "~/.config/opencode/*", "effect": "allow"},
+    {"action": "external_directory", "resource": "~/.local/share/opencode/shell/*", "effect": "allow"},
+    {"action": "read", "resource": "~/.config/opencode/service.json", "effect": "ask"},
+    {"action": "read", "resource": "~/.local/share/opencode/account.json", "effect": "deny"},
+    {"action": "read", "resource": "~/.local/share/opencode/auth.json", "effect": "deny"},
+    {"action": "edit", "resource": "~/miniconda3/*", "effect": "ask"}
+  ],
+  "policies": [
+    {"action": "tool.use", "resource": "shell:git checkout *", "effect": "deny"},
+    {"action": "tool.use", "resource": "shell:git clean *", "effect": "deny"},
+    {"action": "tool.use", "resource": "shell:git reset *", "effect": "deny"},
+    {"action": "tool.use", "resource": "shell:git restore *", "effect": "deny"},
+    {"action": "tool.use", "resource": "shell:git stash *", "effect": "deny"}
+  ]
+}

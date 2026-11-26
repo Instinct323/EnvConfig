@@ -11,9 +11,8 @@ body:
 
 
 update_date:
-  zotero: 2025-11-03
   wechat:
-    # ~/wxid_yysjo0g4xjjn22_a74f
+    # ~/xwechat_files/wxid_yysjo0g4xjjn22_a74f
     # rm: business/migrate
-    _backup: 2026-07-12
-    _clean: 2026-06     # msg
+    _backup: 2026-11-24
+    _clean: 2026-11     # msg
